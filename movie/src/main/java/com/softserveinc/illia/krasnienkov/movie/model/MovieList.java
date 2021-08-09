@@ -36,4 +36,10 @@ public class MovieList {
     @OneToMany(mappedBy = "movieList")
     private List<MovieListToMovie> movieListToMovies;
 
+    public enum MovieListType {
+        WILL, WATCHED, FAVOURITE, CUSTOM
+    }
 }
+
+
+

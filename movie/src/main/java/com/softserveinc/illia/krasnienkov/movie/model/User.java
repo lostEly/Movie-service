@@ -11,16 +11,14 @@ import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity(name = "userr")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;
+public class User  extends Audit{
 
     @Column(nullable = false)
     private String name;
@@ -59,4 +57,7 @@ public class User {
         this.movieLists.remove(movieList);
     }
 
+    public enum Sex {
+        MALE, FEMALE
+    }
 }
