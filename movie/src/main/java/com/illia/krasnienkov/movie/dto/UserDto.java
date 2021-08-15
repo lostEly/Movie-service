@@ -2,6 +2,8 @@ package com.illia.krasnienkov.movie.dto;
 
 import com.illia.krasnienkov.movie.model.Role;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 public class UserDto {
@@ -13,7 +15,7 @@ public class UserDto {
     private String dateOfBirthday;
     private String telephone;
     private String email;
-    private Role role;
+    private Set<RoleDto> roles = new HashSet<>();
 
     public UUID getId() {
         return id;
@@ -71,12 +73,12 @@ public class UserDto {
         this.email = email;
     }
 
-    public Role getRole() {
-        return role;
+    public Set<RoleDto> getRoles() {
+        return roles;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoles(Set<RoleDto> roles) {
+        this.roles = roles;
     }
 
     @Override
@@ -89,7 +91,7 @@ public class UserDto {
                 ", dateOfBirthday=" + dateOfBirthday +
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
-                ", role=" + role +
+                ", roles=" + roles +
                 '}';
     }
 }

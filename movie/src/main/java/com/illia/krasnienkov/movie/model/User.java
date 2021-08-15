@@ -5,14 +5,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity(name = "userr")
-//@NamedNativeQueries({
-//        @NamedNativeQuery(name = "Book.findAllNative",
-//                query = "SELECT * FROM book b ORDER BY b.title DESC",
-//                resultClass = User.class)
-//})
 public class User extends Audit {
 
     @Column(nullable = false)
@@ -36,8 +33,12 @@ public class User extends Audit {
     @Column(nullable = false)
     private String email;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Role role;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "user_to_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    Set<Role> roles = new HashSet<>();
 
     @OneToMany
     private List<MovieList> movieLists = new ArrayList<>();
@@ -100,16 +101,16 @@ public class User extends Audit {
         this.email = email;
     }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
     public List<MovieList> getMovieLists() {
         return movieLists;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public enum Sex {
