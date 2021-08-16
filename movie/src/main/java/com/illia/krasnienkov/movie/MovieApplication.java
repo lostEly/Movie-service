@@ -1,7 +1,7 @@
 package com.illia.krasnienkov.movie;
 
 import com.illia.krasnienkov.movie.model.Movie;
-import com.illia.krasnienkov.movie.service.MovieService;
+import com.illia.krasnienkov.movie.service.impl.MovieServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,7 +16,7 @@ import java.util.UUID;
 @SpringBootApplication
 public class MovieApplication {
 
-    private MovieService movieService;
+    private MovieServiceImpl movieServiceImpl;
     private ConversionService conversionService;
 
     public static void main(String[] args) {
@@ -24,8 +24,8 @@ public class MovieApplication {
     }
 
     @Autowired
-    public void setMovieService(MovieService movieService) {
-        this.movieService = movieService;
+    public void setMovieService(MovieServiceImpl movieServiceImpl) {
+        this.movieServiceImpl = movieServiceImpl;
     }
 
     @Autowired
@@ -42,7 +42,7 @@ public class MovieApplication {
         movie.setDuration(LocalTime.now());
         movie.setReleaseDate(LocalDate.now().minusYears(10));
         movie.setRating(7.8);
-        movieService.test(movie);
+        movieServiceImpl.test(movie);
     }
 //
 //    @EventListener(ApplicationReadyEvent.class)

@@ -1,7 +1,7 @@
 package com.illia.krasnienkov.movie.controller;
 
 import com.illia.krasnienkov.movie.model.Role;
-import com.illia.krasnienkov.movie.service.RoleService;
+import com.illia.krasnienkov.movie.service.impl.RoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +15,10 @@ import java.util.Set;
 @RestController
 @RequestMapping("/roles")
 public class RoleController {
-    private RoleService roleService;
+    private RoleServiceImpl roleService;
 
     @Autowired
-    public void setRoleService(RoleService roleService) {
+    public void setRoleService(RoleServiceImpl roleService) {
         this.roleService = roleService;
     }
 
