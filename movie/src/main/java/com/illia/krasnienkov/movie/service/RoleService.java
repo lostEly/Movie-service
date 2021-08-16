@@ -16,9 +16,10 @@ public class RoleService {
         this.roleRepository = roleRepository;
     }
 
+    //@TODO
+    // create logic of exception handling of not found roles
     public Set<Role> findByNameIn(Set<String> names) {
         Set<Role> roles = roleRepository.findByNameIn(names);
-        if (roles.isEmpty()) throw new RuntimeException("No roles found");
         return roles;
     }
 

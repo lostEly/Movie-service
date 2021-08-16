@@ -1,9 +1,6 @@
 package com.illia.krasnienkov.movie;
 
-import com.illia.krasnienkov.movie.dto.RoleDto;
-import com.illia.krasnienkov.movie.dto.UserDto;
 import com.illia.krasnienkov.movie.model.Movie;
-import com.illia.krasnienkov.movie.model.User;
 import com.illia.krasnienkov.movie.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -14,7 +11,6 @@ import org.springframework.core.convert.ConversionService;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Set;
 import java.util.UUID;
 
 @SpringBootApplication

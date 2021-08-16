@@ -1,7 +1,5 @@
 package com.illia.krasnienkov.movie.dto;
 
-import com.illia.krasnienkov.movie.model.Role;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;

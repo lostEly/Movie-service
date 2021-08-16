@@ -1,10 +1,8 @@
 package com.illia.krasnienkov.movie.converter;
 
-import com.illia.krasnienkov.movie.dto.RoleDto;
 import com.illia.krasnienkov.movie.dto.UserDto;
 import com.illia.krasnienkov.movie.model.Role;
 import com.illia.krasnienkov.movie.model.User;
-import com.illia.krasnienkov.movie.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -20,11 +18,11 @@ public class UserDtoConverterToUser implements Converter<UserDto, User> {
     private static final DateTimeFormatter dateFormat
             = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    private RoleService roleService;
+    private RoleDtoConverterToRole roleDtoConverterToRole;
 
     @Autowired
-    public void setRoleService(RoleService roleService) {
-        this.roleService = roleService;
+    public void setService(RoleDtoConverterToRole roleDtoConverterToRole) {
+        this.roleDtoConverterToRole = roleDtoConverterToRole;
     }
 
     @Override
@@ -38,14 +36,11 @@ public class UserDtoConverterToUser implements Converter<UserDto, User> {
         user.setDateOfBirthday(LocalDate.parse(userDto.getDateOfBirthday(), dateFormat));
         user.setTelephone(userDto.getTelephone());
 
-//        Set<Role> roles = new HashSet<>();
-//        for (RoleDto roleDto : roleNamesSet) {
-//            roles.add(service.convert(roleDto, Role.class));
-//        }
-//        user.setRoles(roles);
-//        user.setRoles(roleNamesSet.stream()
-//                .map(obj -> service.convert(obj, Role.class))
-//                .collect(Collectors.toSet()));
+        Set<Role> roles = userDto.getRoles()
+                .stream()
+                .map(roleDto -> roleDtoConverterToRole.convert(roleDto))
+                .collect(Collectors.toSet());
+        user.setRoles(roles);
         return user;
     }
 }

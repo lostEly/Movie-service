@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -18,6 +20,18 @@ public class UserController {
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @PostMapping
+    public ResponseEntity<UserDto> create(@RequestBody User user) {
+        UserDto userDtoCreated = userService.create(user);
+        return new ResponseEntity<>(userDtoCreated, HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserDto>> readAll() {
+        List<UserDto> userDtoList = userService.readAll();
+        return new ResponseEntity<>(userDtoList, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -32,11 +46,22 @@ public class UserController {
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<UserDto> create(@RequestBody User user) {
-        UserDto userDtoCreated = userService.create(user);
-        return new ResponseEntity<>(userDtoCreated, HttpStatus.CREATED);
+    @PutMapping
+    public ResponseEntity<UserDto> update(@RequestBody User user) {
+        UserDto updatedUser = userService.update(user);
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
-//    public ResponseEntity<UserDto> update()
+    @PatchMapping("/{id}")
+    public ResponseEntity<UserDto> patch(@RequestBody Map<String, Object> fields, @PathVariable UUID id) {
+        UserDto userDto = userService.patch(fields, id);
+        return new ResponseEntity<>(userDto, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable UUID id) {
+        userService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

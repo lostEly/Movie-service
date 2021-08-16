@@ -22,7 +22,7 @@ public class MovieService {
         System.out.println(service.convert(movie, MovieDto.class));
     }
 
-    public void test2(UserDto userDto){
+    public void test2(UserDto userDto) {
         User user = service.convert(userDto, User.class);
         System.out.println(user.getRoles());
     }
