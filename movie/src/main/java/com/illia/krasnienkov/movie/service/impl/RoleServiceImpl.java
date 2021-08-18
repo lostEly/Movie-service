@@ -1,5 +1,6 @@
 package com.illia.krasnienkov.movie.service.impl;
 
+import com.illia.krasnienkov.movie.exceptions.ResourceNotFoundException;
 import com.illia.krasnienkov.movie.model.Role;
 import com.illia.krasnienkov.movie.repository.RoleRepository;
 import com.illia.krasnienkov.movie.service.RoleService;
@@ -19,10 +20,11 @@ public class RoleServiceImpl implements RoleService {
         this.roleRepository = roleRepository;
     }
 
-    //@TODO
-    // create logic of exception handling of not found roles
     public Set<Role> findByNameIn(Set<String> names) {
         Set<Role> roles = roleRepository.findByNameIn(names);
+        if (roles.isEmpty()) {
+            throw new ResourceNotFoundException("Roles with names + " + names.toString());
+        }
         return roles;
     }
 
@@ -33,14 +35,14 @@ public class RoleServiceImpl implements RoleService {
     public void delete(UUID id) {
         Optional<Role> role = roleRepository.findById(id);
         if (role.isEmpty()) {
-            throw new RuntimeException("Role with id " + id + " not found");
+            throw new ResourceNotFoundException("Role with id " + id);
         }
         roleRepository.deleteById(id);
     }
 
     public Role findByName(String name) {
         return roleRepository.findByName(name).orElseThrow(() -> {
-            throw new RuntimeException("No such role found");
+            throw new ResourceNotFoundException("Such role is");
         });
     }
 }

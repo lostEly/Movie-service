@@ -43,7 +43,6 @@
         <Logger name="com.illia.krasnienkov" level="trace"/>
 
         <Logger name="com.illia.krasnienkov.movie.service.impl.UserServiceImpl" level="info">
-            <AppenderRef ref="Console"/>
             <AppenderRef ref="RollingFile"/>
         </Logger>
     </Loggers>

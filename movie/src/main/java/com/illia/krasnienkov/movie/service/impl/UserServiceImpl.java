@@ -1,6 +1,7 @@
 package com.illia.krasnienkov.movie.service.impl;
 
 import com.illia.krasnienkov.movie.dto.UserDto;
+import com.illia.krasnienkov.movie.exceptions.ResourceNotFoundException;
 import com.illia.krasnienkov.movie.model.Role;
 import com.illia.krasnienkov.movie.model.User;
 import com.illia.krasnienkov.movie.repository.UserRepository;
@@ -101,7 +102,7 @@ public class UserServiceImpl implements UserService {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isEmpty()) {
             LOGGER.error("User with id + " + id + " not found");
-            throw new RuntimeException();
+            throw new ResourceNotFoundException("User with id " + id);
         }
         User user = optionalUser.get();
         LOGGER.info("Finished reading user by id");
@@ -114,15 +115,17 @@ public class UserServiceImpl implements UserService {
                 .stream()
                 .map(Role::getName)
                 .collect(Collectors.toSet());
-        Set<Role> roles = roleService.findByNameIn(roleNames); //if role not found -> give user role and warn
-        if (!roles.isEmpty()) {
-            convertedUser.setRoles(roles);
-            LOGGER.info("Roles are set");
+        Set<Role> roles;
+        try {
+            roles = roleService.findByNameIn(roleNames);
+        } catch (ResourceNotFoundException exception) {
+            LOGGER.error("No matching roles found. Setting default user role");
+            Role role = roleService.findByName("USER");
+            LOGGER.info("User role is set");
+            convertedUser.setRoles(Set.of(role));
             return;
         }
-        LOGGER.error("No matching roles found. Setting default user role");
-        Role role = roleService.findByName("USER");
-        LOGGER.info("User role is set");
-        convertedUser.setRoles(Set.of(role));
+        convertedUser.setRoles(roles);
+        LOGGER.info("Roles are set");
     }
 }
