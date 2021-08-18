@@ -44,19 +44,4 @@ public class MovieApplication {
         movie.setRating(7.8);
         movieServiceImpl.test(movie);
     }
-//
-//    @EventListener(ApplicationReadyEvent.class)
-//    public void test1() {
-//        UserDto userDto = new UserDto();
-//        RoleDto roleDto = new RoleDto();
-//        roleDto.setName("USER");
-//        userDto.setId(UUID.randomUUID());
-//        userDto.setTelephone("0951238475");
-//        userDto.setSex("MALE");
-//        userDto.setEmail("asd@gmail.com");
-//        userDto.setDateOfBirthday("2001-12-11");
-//        userDto.setRoles(Set.of(roleDto));
-//        movieService.test2(userDto);
-//    }
-
 }
