@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 @Entity(name = "profession")
 public class Profession extends Audit {
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private String name;
 
     public String getName() {

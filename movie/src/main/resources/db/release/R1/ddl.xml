@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="init_database_schema" author="ikrasni" context="ddl">
+        <sqlFile path="src/main/resources/db/release/R1/sql/init_database_schema_ddl.sql"/>
+    </changeSet>
+
+    <changeSet id="create_archives" author="ikrasni" context="ddl">
+        <sqlFile path="src/main/resources/db/release/R1/sql/create_archives_ddl.sql"/>
+    </changeSet>
+
+    <changeSet id="create_date_updated_trigger" author="ikrasni" context="ddl">
+        <sqlFile path="src/main/resources/db/release/R1/sql/date_updated_trigger.sql"/>
+    </changeSet>
+
+    <changeSet id="create_date_deleted_trigger" author="ikrasni" context="ddl">
+        <sqlFile path="src/main/resources/db/release/R1/sql/date_deleted_trigger.sql"/>
+    </changeSet>
+</databaseChangeLog>

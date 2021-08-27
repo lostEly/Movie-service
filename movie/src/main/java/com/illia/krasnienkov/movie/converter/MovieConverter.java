@@ -5,13 +5,15 @@ import com.illia.krasnienkov.movie.dto.MovieDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class MovieConverter implements Converter<Movie, MovieDto> {
 
     @Override
     public MovieDto convert(Movie movie) {
         MovieDto dto = new MovieDto();
-            dto.setMovieId(movie.getId());
+            dto.setMovieId(UUID.fromString(movie.getId()));
             dto.setName(movie.getName());
             dto.setDescription(movie.getDescription());
             dto.setDuration(movie.getDuration());

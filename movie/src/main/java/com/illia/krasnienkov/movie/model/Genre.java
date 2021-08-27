@@ -7,7 +7,7 @@ import java.util.Set;
 @Entity(name = "genre")
 public class Genre extends Audit {
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 30)
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)

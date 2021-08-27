@@ -33,15 +33,15 @@ public class MovieApplication {
         this.conversionService = conversionService;
     }
 
-    @EventListener(ApplicationReadyEvent.class)
-    public void test() {
-        Movie movie = new Movie();
-        movie.setId(UUID.randomUUID());
-        movie.setName("Leon");
-        movie.setDescription("killer");
-        movie.setDuration(LocalTime.now());
-        movie.setReleaseDate(LocalDate.now().minusYears(10));
-        movie.setRating(7.8);
-        movieServiceImpl.test(movie);
-    }
+//    @EventListener(ApplicationReadyEvent.class)
+//    public void test() {
+//        Movie movie = new Movie();
+//        movie.setId(UUID.randomUUID());
+//        movie.setName("Leon");
+//        movie.setDescription("killer");
+//        movie.setDuration(LocalTime.now());
+//        movie.setReleaseDate(LocalDate.now().minusYears(10));
+//        movie.setRating(7.8);
+//        movieServiceImpl.test(movie);ч
+//    }
 }

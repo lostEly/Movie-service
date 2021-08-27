@@ -4,12 +4,17 @@ import com.illia.krasnienkov.movie.dto.MovieDto;
 import com.illia.krasnienkov.movie.dto.UserDto;
 import com.illia.krasnienkov.movie.model.Movie;
 import com.illia.krasnienkov.movie.model.User;
+import com.illia.krasnienkov.movie.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
 @Service
-public class MovieServiceImpl {
+public class MovieServiceImpl implements MovieService {
 
     private ConversionService service;
 
@@ -18,13 +23,33 @@ public class MovieServiceImpl {
         this.service = service;
     }
 
-    public void test(Movie movie) {
-        System.out.println(service.convert(movie, MovieDto.class));
+    @Override
+    public MovieDto create(Movie movie) {
+        return null;
     }
 
-    public void test2(UserDto userDto) {
-        User user = service.convert(userDto, User.class);
-        System.out.println(user.getRoles());
+    @Override
+    public List<MovieDto> readAll() {
+        return null;
     }
 
+    @Override
+    public MovieDto readById(UUID id) {
+        return null;
+    }
+
+    @Override
+    public MovieDto update(Movie movie) {
+        return null;
+    }
+
+    @Override
+    public MovieDto patch(Map<String, Object> fields, UUID id) {
+        return null;
+    }
+
+    @Override
+    public void deleteById(UUID id) {
+
+    }
 }

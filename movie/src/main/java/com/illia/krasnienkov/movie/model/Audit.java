@@ -12,23 +12,20 @@ import java.util.UUID;
 @MappedSuperclass
 public abstract class Audit {
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(columnDefinition = "BINARY(16)")
-    private UUID id;
+    private String id;
 
     @Column(nullable = false)
-    private LocalDateTime dateCreated = LocalDateTime.now();
+    private LocalDateTime dateCreated;
 
     private LocalDateTime dateUpdated;
 
     private LocalDateTime dateDeleted;
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 

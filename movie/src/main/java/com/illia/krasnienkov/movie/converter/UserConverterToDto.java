@@ -8,6 +8,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Component
@@ -24,7 +25,7 @@ public class UserConverterToDto implements Converter<User, UserDto> {
     @Override
     public UserDto convert(User user) {
         UserDto dto = new UserDto();
-        dto.setId(user.getId());
+        dto.setId(UUID.fromString(user.getId()));
         dto.setName(user.getName());
         dto.setLastName(user.getLastName());
         dto.setSex(user.getSex().toString());

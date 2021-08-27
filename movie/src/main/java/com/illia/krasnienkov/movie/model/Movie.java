@@ -1,22 +1,22 @@
 package com.illia.krasnienkov.movie.model;
 
 import javax.persistence.*;
+import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Set;
 
 @Entity(name = "movie")
 public class Movie extends Audit {
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 30)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "text")
     private String description;
 
     @Column(nullable = false)
-    private LocalTime duration;
+    private Duration duration;
 
     @Column(nullable = false)
     private LocalDate releaseDate;
@@ -30,14 +30,19 @@ public class Movie extends Audit {
             inverseJoinColumns = @JoinColumn(name = "employee_id"))
     private Set<Employee> employees;
 
-    @Enumerated(value = EnumType.STRING)
-    private Country country;
+
+    @ManyToMany
+    @JoinTable(
+            name = "country_to_movie",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "country_id"))
+    private Set<Country> country;
 
     @ManyToMany
     @JoinTable(
             name = "genre_to_movie",
-            joinColumns = @JoinColumn(name = "genre_id"),
-            inverseJoinColumns = @JoinColumn(name = "employee_id"))
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private Set<Genre> genres;
 
     @OneToMany(mappedBy = "movie")
@@ -59,11 +64,11 @@ public class Movie extends Audit {
         this.description = description;
     }
 
-    public LocalTime getDuration() {
+    public Duration getDuration() {
         return duration;
     }
 
-    public void setDuration(LocalTime duration) {
+    public void setDuration(Duration duration) {
         this.duration = duration;
     }
 
@@ -91,12 +96,20 @@ public class Movie extends Audit {
         this.employees = employees;
     }
 
-    public Country getCountry() {
+    public Set<Country> getCountry() {
         return country;
     }
 
-    public void setCountry(Country country) {
+    public void setCountry(Set<Country> country) {
         this.country = country;
+    }
+
+    public void setGenres(Set<Genre> genres) {
+        this.genres = genres;
+    }
+
+    public List<MovieListToMovie> getMovieListToMovies() {
+        return movieListToMovies;
     }
 
     public Set<Genre> getGenres() {
@@ -105,9 +118,5 @@ public class Movie extends Audit {
 
     public void setMovieListToMovies(List<MovieListToMovie> movieListToMovies) {
         this.movieListToMovies = movieListToMovies;
-    }
-
-    public enum Country {
-        USA, RUSSIA
     }
 }

@@ -7,12 +7,13 @@ import java.util.List;
 @Entity(name = "movie_list")
 public class MovieList extends Audit {
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private String name;
 
     @Column(nullable = false)
     private LocalDateTime dateCreated;
 
+    @Column(columnDefinition = "text")
     private String comment;
 
     @ManyToOne(fetch = FetchType.LAZY)

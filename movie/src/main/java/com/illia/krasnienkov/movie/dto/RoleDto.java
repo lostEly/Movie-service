@@ -1,15 +1,17 @@
 package com.illia.krasnienkov.movie.dto;
 
+import java.util.UUID;
+
 public class RoleDto {
 
-    private String roleId;
+    private UUID roleId;
     private String name;
 
-    public String getRoleId() {
+    public UUID getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(String roleId) {
+    public void setRoleId(UUID roleId) {
         this.roleId = roleId;
     }
 

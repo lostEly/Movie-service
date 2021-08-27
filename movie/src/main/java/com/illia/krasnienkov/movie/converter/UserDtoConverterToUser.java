@@ -28,7 +28,7 @@ public class UserDtoConverterToUser implements Converter<UserDto, User> {
     @Override
     public User convert(UserDto userDto) {
         User user = new User();
-        user.setId(userDto.getId());
+        user.setId(userDto.getId().toString());
         user.setName(userDto.getName());
         user.setLastName(userDto.getLastName());
         user.setSex(User.Sex.valueOf(userDto.getSex()));

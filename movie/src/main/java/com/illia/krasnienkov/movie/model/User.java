@@ -12,10 +12,10 @@ import java.util.Set;
 @Entity(name = "userr")
 public class User extends Audit {
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 30)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 40)
     private String lastName;
 
     @Enumerated(EnumType.STRING)

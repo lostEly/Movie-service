@@ -1,5 +1,6 @@
 package com.illia.krasnienkov.movie.dto;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.UUID;
@@ -9,7 +10,7 @@ public class MovieDto {
     private UUID movieId;
     private String name;
     private String description;
-    private LocalTime duration;
+    private Duration duration;
     private LocalDate releaseDate;
     private Double rating;
 
@@ -37,11 +38,11 @@ public class MovieDto {
         this.description = description;
     }
 
-    public LocalTime getDuration() {
+    public Duration getDuration() {
         return duration;
     }
 
-    public void setDuration(LocalTime duration) {
+    public void setDuration(Duration duration) {
         this.duration = duration;
     }
 
