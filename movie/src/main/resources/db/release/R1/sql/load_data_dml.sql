@@ -27,4 +27,9 @@ VALUES ('2000-03-03', 'user@gmail.com', 'Petrov', 'Petr', 'MALE', '0996738495');
 INSERT INTO movie_list (comment, movie_list_type, name, user_id)
 values (null, 'WILL', 'Will watch', (SELECT id from userr where true limit 1));
 
+INSERT INTO country (iso, alpha2, full_name, part_of_the_world, short_name)
+values (840, 'US', 'United States', 'America', 'United States'),
+       (643, 'RU', 'Russian Federation', 'Europe', 'Russia'),
+       (554, 'NZ', 'New Zealand', 'Oceania', 'New Zealand');
+
 INSERT INTO user_to_role (user_id, role_id) values ((SELECT id from userr limit 1), (SELECT id from role where name like 'USER'))

@@ -165,16 +165,18 @@ create table userr_movie_lists
 
 create table country
 (
-    id                varchar(255) not null
+    id                VARCHAR(255) default (uuid()) not null
         primary key,
     date_created      datetime(6) default (now()) not null,
     date_deleted      datetime(6) null,
     date_updated      datetime(6) null,
-    iso               int          not null,
-    alpha2            varchar(2)   not null,
-    full_name         varchar(255) not null,
-    part_of_the_world varchar(255) not null,
-    short_name        varchar(255) not null
+    iso               int                           not null,
+    alpha2            varchar(2)                    not null,
+    full_name         varchar(255)                  not null,
+    part_of_the_world varchar(255)                  not null,
+    short_name        varchar(255)                  not null,
+    constraint UK_country_iso
+        unique (iso)
 );
 
 create table country_to_movie
