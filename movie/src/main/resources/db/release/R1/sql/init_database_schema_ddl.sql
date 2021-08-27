@@ -51,12 +51,12 @@ create table employee_to_movie
 create table genre_to_movie
 (
     genre_id    varchar(255) not null,
-    employee_id varchar(255) not null,
-    primary key (genre_id, employee_id),
+    movie_id varchar(255) not null,
+    primary key (genre_id, movie_id),
     constraint FK6pc9008s4ol81ag1yd05pg8yq
         foreign key (genre_id) references movie (id),
     constraint FKqc1xo6g2cdc338no6ugvew9m2
-        foreign key (employee_id) references genre (id)
+        foreign key (movie_id) references genre (id)
 );
 
 create table profession
@@ -131,7 +131,7 @@ create table movie_list_to_movie
     date_created  datetime(6) default (now()) not null,
     date_deleted  datetime(6) null,
     date_updated  datetime(6) null,
-    date_added    datetime                      not null,
+    date_added    date                     not null,
     movie_id      varchar(255) null,
     movie_list_id varchar(255) null,
     constraint FKai6jnssknfkooo6c3ah67mi2u

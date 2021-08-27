@@ -6,7 +6,7 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
 
     <changeSet id="load_data" author="ikrasni" context="dml">
-        <sqlFile path="src/main/resources/db/release/R1/sql/load_data_dml.sql"/>
+        <sqlFile path="db/release/R1/sql/load_data_dml.sql"/>
     </changeSet>
 
 </databaseChangeLog>

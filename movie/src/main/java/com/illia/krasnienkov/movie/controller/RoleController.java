@@ -31,6 +31,6 @@ public class RoleController {
     @PostMapping
     public ResponseEntity<Role> create(@RequestBody Role role) {
         Role newRole = roleService.create(role);
-        return new ResponseEntity<>(newRole, HttpStatus.OK);
+        return new ResponseEntity<>(newRole, HttpStatus.CREATED);
     }
 }

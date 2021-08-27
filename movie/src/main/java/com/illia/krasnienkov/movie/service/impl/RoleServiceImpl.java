@@ -5,6 +5,7 @@ import com.illia.krasnienkov.movie.model.Role;
 import com.illia.krasnienkov.movie.repository.RoleRepository;
 import com.illia.krasnienkov.movie.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -20,6 +21,7 @@ public class RoleServiceImpl implements RoleService {
         this.roleRepository = roleRepository;
     }
 
+    @Cacheable(value = "role-cache")
     public Set<Role> findByNameIn(Set<String> names) {
         Set<Role> roles = roleRepository.findByNameIn(names);
         if (roles.isEmpty()) {
