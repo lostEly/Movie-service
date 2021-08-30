@@ -1,5 +1,6 @@
 package com.illia.krasnienkov.movie.service.impl;
 
+import com.illia.krasnienkov.movie.dto.RoleDto;
 import com.illia.krasnienkov.movie.dto.UserDto;
 import com.illia.krasnienkov.movie.exceptions.ResourceNotFoundException;
 import com.illia.krasnienkov.movie.model.Role;
@@ -63,7 +64,7 @@ public class UserServiceImpl implements UserService {
         return service.convert(user, UserDto.class);
     }
 
-    public UserDto readById1(UUID id) {
+    public UserDto readById1(String id) {
         User user = findUserById(id);
         return service.convert(user, UserDto.class);
     }
@@ -77,7 +78,7 @@ public class UserServiceImpl implements UserService {
         return service.convert(updatedUser, UserDto.class);
     }
 
-    public UserDto patch(Map<String, Object> fields, UUID id) {
+    public UserDto patch(Map<String, Object> fields, String id) {
         LOGGER.warn("Started patching user with id + " + id);
         User user = findUserById(id);
         fields.forEach((k, v) -> {
@@ -90,14 +91,14 @@ public class UserServiceImpl implements UserService {
         return service.convert(patchedUser, UserDto.class);
     }
 
-    public void deleteById(UUID id) {
+    public void deleteById(String id) {
         LOGGER.warn("Started deleting user with id " + id);
         User user = findUserById(id);
         userRepository.delete(user);
         LOGGER.info("Finished deleting user with id " + id);
     }
 
-    private User findUserById(UUID id) {
+    private User findUserById(String id) {
         LOGGER.info("Started reading user by id");
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isEmpty()) {
@@ -115,9 +116,13 @@ public class UserServiceImpl implements UserService {
                 .stream()
                 .map(Role::getName)
                 .collect(Collectors.toSet());
+        Set<RoleDto> roleDtoSet;
         Set<Role> roles;
         try {
-            roles = roleService.findByNameIn(roleNames);
+            roleDtoSet = roleService.findByNameIn(roleNames);
+            roles = roleDtoSet.stream()
+                    .map(roleDto -> service.convert(roleDto, Role.class))
+                    .collect(Collectors.toSet());
         } catch (ResourceNotFoundException exception) {
             LOGGER.error("No matching roles found. Setting default user role");
             Role role = roleService.findByName("USER");

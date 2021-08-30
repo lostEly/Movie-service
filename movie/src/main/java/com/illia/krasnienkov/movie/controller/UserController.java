@@ -41,7 +41,7 @@ public class UserController {
     }
 
     @GetMapping("/zxc/{id}")
-    public ResponseEntity<UserDto> readById1(@PathVariable UUID id) {
+    public ResponseEntity<UserDto> readById1(@PathVariable String id) {
         UserDto userDto = userServiceImpl.readById1(id);
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
@@ -53,13 +53,13 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<UserDto> patch(@RequestBody Map<String, Object> fields, @PathVariable UUID id) {
+    public ResponseEntity<UserDto> patch(@RequestBody Map<String, Object> fields, @PathVariable String id) {
         UserDto userDto = userServiceImpl.patch(fields, id);
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable UUID id) {
+    public ResponseEntity<?> delete(@PathVariable String id) {
         userServiceImpl.deleteById(id);
         return ResponseEntity.noContent().build();
     }

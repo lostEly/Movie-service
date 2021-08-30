@@ -1,5 +1,6 @@
 package com.illia.krasnienkov.movie.controller;
 
+import com.illia.krasnienkov.movie.dto.RoleDto;
 import com.illia.krasnienkov.movie.model.Role;
 import com.illia.krasnienkov.movie.service.impl.RoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +24,14 @@ public class RoleController {
     }
 
     @PostMapping("/test")
-    public ResponseEntity<Set<Role>> readByNameIn(@RequestBody Set<String> names) {
-        Set<Role> roles = roleService.findByNameIn(names);
-        return new ResponseEntity<>(roles, HttpStatus.OK);
+    public ResponseEntity<Set<RoleDto>> readByNameIn(@RequestBody Set<String> names) {
+        Set<RoleDto> roleDtoSet = roleService.findByNameIn(names);
+        return new ResponseEntity<>(roleDtoSet, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Role> create(@RequestBody Role role) {
-        Role newRole = roleService.create(role);
+    public ResponseEntity<RoleDto> create(@RequestBody Role role) {
+        RoleDto newRole = roleService.create(role);
         return new ResponseEntity<>(newRole, HttpStatus.CREATED);
     }
 }

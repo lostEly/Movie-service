@@ -12,11 +12,11 @@ public interface MovieService {
 
     List<MovieDto> readAll();
 
-    MovieDto readById(UUID id);
+    MovieDto readById(String id);
 
     MovieDto update(Movie movie);
 
-    MovieDto patch(Map<String, Object> fields, UUID id);
+    MovieDto patch(Map<String, Object> fields, String id);
 
-    void deleteById(UUID id);
+    void deleteById(String id);
 }

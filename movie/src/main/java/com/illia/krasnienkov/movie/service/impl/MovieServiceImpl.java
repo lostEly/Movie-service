@@ -34,7 +34,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public MovieDto readById(UUID id) {
+    public MovieDto readById(String id) {
         return null;
     }
 
@@ -44,12 +44,12 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public MovieDto patch(Map<String, Object> fields, UUID id) {
+    public MovieDto patch(Map<String, Object> fields, String id) {
         return null;
     }
 
     @Override
-    public void deleteById(UUID id) {
+    public void deleteById(String id) {
 
     }
 }

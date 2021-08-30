@@ -12,10 +12,10 @@ import java.util.UUID;
 @MappedSuperclass
 public abstract class Audit {
     @Id
-    private String id;
+    private String id = UUID.randomUUID().toString();
 
     @Column(nullable = false)
-    private LocalDateTime dateCreated;
+    private LocalDateTime dateCreated = LocalDateTime.now();
 
     private LocalDateTime dateUpdated;
 

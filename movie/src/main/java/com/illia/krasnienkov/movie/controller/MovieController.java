@@ -36,7 +36,7 @@ public class MovieController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MovieDto> readById(@PathVariable UUID id) {
+    public ResponseEntity<MovieDto> readById(@PathVariable String id) {
         MovieDto movieDto = movieServiceImpl.readById(id);
         return new ResponseEntity<>(movieDto, HttpStatus.OK);
     }
@@ -48,13 +48,13 @@ public class MovieController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<MovieDto> patch(@RequestBody Map<String, Object> fields, @PathVariable UUID id) {
+    public ResponseEntity<MovieDto> patch(@RequestBody Map<String, Object> fields, @PathVariable String id) {
         MovieDto movieDto = movieServiceImpl.patch(fields, id);
         return new ResponseEntity<>(movieDto, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable UUID id) {
+    public ResponseEntity<?> delete(@PathVariable String id) {
         movieServiceImpl.deleteById(id);
         return ResponseEntity.noContent().build();
     }

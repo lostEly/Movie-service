@@ -19,8 +19,21 @@
                 <TimeBasedTriggeringPolicy />
             </Policies>
         </RollingFile>
-        <RollingFile name="RollingFile"
+        <RollingFile name="User Service Logger"
                      fileName="./logs/users.log"
+                     filePattern="./logs/$${date:yyyy-MM}/users-%d{-dd-MMMM-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <pattern>%d %p %C{1.} [%t] %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy
+                        size="10 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+        <RollingFile name="Aspect Logger"
+                     fileName="./logs/aspects.log"
                      filePattern="./logs/$${date:yyyy-MM}/users-%d{-dd-MMMM-yyyy}-%i.log.gz">
             <PatternLayout>
                 <pattern>%d %p %C{1.} [%t] %m%n</pattern>
@@ -43,7 +56,11 @@
         <Logger name="com.illia.krasnienkov" level="trace"/>
 
         <Logger name="com.illia.krasnienkov.movie.service.impl.UserServiceImpl" level="info">
-            <AppenderRef ref="RollingFile"/>
+            <AppenderRef ref="User Service Logger"/>
+        </Logger>
+
+        <Logger name="com.illia.krasnienkov.movie.logger.MyAspect" level="info">
+            <AppenderRef ref="Aspect Logger"/>
         </Logger>
     </Loggers>
 

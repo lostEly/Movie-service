@@ -1,5 +1,7 @@
-package com.illia.krasnienkov.movie.config;
+package com.illia.krasnienkov.movie.logger;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -10,6 +12,7 @@ import org.springframework.util.StopWatch;
 @Aspect
 @Component
 public class MyAspect {
+    private static final Logger LOGGER = LogManager.getLogger(MyAspect.class);
 
     @Pointcut("within(com.illia.krasnienkov.movie..*)")
     public void callAtMyServicePublic() {
@@ -18,12 +21,7 @@ public class MyAspect {
     @Around("callAtMyServicePublic()")
     public Object aroundCallAt(ProceedingJoinPoint call) throws Throwable {
         StopWatch clock = new StopWatch(call.toString());
-        try {
-            clock.start(call.toShortString());
-            return call.proceed();
-        } finally {
-            clock.stop();
-            System.out.println(clock.prettyPrint());
-        }
+        LOGGER.info(clock);
+        return call.proceed();
     }
 }

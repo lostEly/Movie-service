@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.UUID;
 
-public interface UserRepository extends JpaRepository<User, UUID> {
+public interface UserRepository extends JpaRepository<User, String> {
 
     @Query(nativeQuery = true)
     User namedFindUserById(@Param("id") String id);

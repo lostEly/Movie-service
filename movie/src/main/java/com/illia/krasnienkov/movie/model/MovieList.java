@@ -10,9 +10,6 @@ public class MovieList extends Audit {
     @Column(nullable = false, length = 50)
     private String name;
 
-    @Column(nullable = false)
-    private LocalDateTime dateCreated;
-
     @Column(columnDefinition = "text")
     private String comment;
 
@@ -31,14 +28,6 @@ public class MovieList extends Audit {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public LocalDateTime getDateCreated() {
-        return dateCreated;
-    }
-
-    public void setDateCreated(LocalDateTime dateCreated) {
-        this.dateCreated = dateCreated;
     }
 
     public String getComment() {
@@ -73,7 +62,6 @@ public class MovieList extends Audit {
     public String toString() {
         return "MovieList{" +
                 "name='" + name + '\'' +
-                ", dateCreated=" + dateCreated +
                 ", comment='" + comment + '\'' +
                 ", user=" + user +
                 ", movieListType=" + movieListType +
