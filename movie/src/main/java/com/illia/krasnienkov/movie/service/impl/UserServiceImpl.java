@@ -73,6 +73,7 @@ public class UserServiceImpl implements UserService {
         LOGGER.warn("Started updating user with id + " + user.getId());
         if (user.getId() == null)
             throw new RuntimeException("UserId == null");
+        convertRoles(user);
         User updatedUser = userRepository.save(user);
         LOGGER.info("User with id + " + user.getId() + " is updated");
         return service.convert(updatedUser, UserDto.class);
