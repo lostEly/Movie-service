@@ -29,7 +29,6 @@ create table movie
     date_created datetime(6) default (now()) not null,
     date_deleted datetime(6) null,
     date_updated datetime(6) null,
-    country      varchar(255) null,
     description  text                          not null,
     duration     bigint                        not null,
     name         varchar(30)                   not null,

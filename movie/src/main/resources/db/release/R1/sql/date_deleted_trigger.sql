@@ -23,8 +23,8 @@ CREATE TRIGGER date_deleted_movie_trigger
     BEFORE DELETE
     ON movie
     FOR EACH ROW
-        INSERT INTO movie_archives(id, date_created, date_updated, country, description, duration, name, rating, release_date)
-        VALUES (old.id, old.date_created, old.date_updated, old.country, old.description, old.duration, old.name, old.rating, old.release_date);
+        INSERT INTO movie_archives(id, date_created, date_updated, description, duration, name, rating, release_date)
+        VALUES (old.id, old.date_created, old.date_updated, old.description, old.duration, old.name, old.rating, old.release_date);
 
 CREATE TRIGGER date_deleted_movie_list_trigger
     BEFORE DELETE

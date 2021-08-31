@@ -12,9 +12,9 @@ values ('ActorLastName1', 'ActorName1'),
        ('ActorLastName2', 'ActorName2'),
        ('ActorLastName3', 'ActorName3');
 
-INSERT INTO movie (description, country, duration, name, rating, release_date)
-VALUES ('some description 1', 'USA', 113, 'Wrath of Man', 8.4, '2021-04-22'),
-       ('some description 2', 'USA', 109, 'Mortal Kombat', 8.5, '2021-01-01');
+INSERT INTO movie (description, duration, name, rating, release_date)
+VALUES ('some description 1', 113, 'Wrath of Man', 8.4, '2021-04-22'),
+       ('some description 2', 109, 'Mortal Kombat', 8.5, '2021-01-01');
 
 INSERT INTO genre (name, parent_genre_id)
 values ('thriller', null),
