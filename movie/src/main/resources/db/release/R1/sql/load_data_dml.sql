@@ -32,4 +32,5 @@ values (840, 'US', 'United States', 'America', 'United States'),
        (643, 'RU', 'Russian Federation', 'Europe', 'Russia'),
        (554, 'NZ', 'New Zealand', 'Oceania', 'New Zealand');
 
-INSERT INTO user_to_role (user_id, role_id) values ((SELECT id from userr limit 1), (SELECT id from role where name like 'USER'))
+INSERT INTO user_to_role (user_id, role_id)
+values ((SELECT id from userr limit 1), (SELECT id from role where name like 'USER'))

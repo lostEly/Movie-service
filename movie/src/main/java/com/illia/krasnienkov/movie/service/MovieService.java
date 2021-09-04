@@ -19,4 +19,6 @@ public interface MovieService {
     MovieDto patch(Map<String, Object> fields, String id);
 
     void deleteById(String id);
+
+    MovieDto getRandomMovie();
 }

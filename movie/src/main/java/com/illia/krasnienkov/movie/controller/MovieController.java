@@ -58,4 +58,10 @@ public class MovieController {
         movieServiceImpl.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/random")
+    public ResponseEntity<MovieDto> getRandomMovie(){
+        MovieDto movieDto = movieServiceImpl.getRandomMovie();
+        return new ResponseEntity<>(movieDto, HttpStatus.OK);
+    }
 }
