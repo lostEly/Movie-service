@@ -5,12 +5,14 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_USER=admin
-      - MYSQL_PASSWORD=root
+      - MYSQL_PASSWORD=pass
       - MYSQL_DATABASE=movie
     ports:
       - "3308:3306"
+    expose:
+      - 3306
     volumes:
-      - 'db:/var/lib/mysql'
+      - './db:/var/lib/mysql'
     restart: always
     networks:
       - backend
@@ -21,7 +23,7 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/movie?autoReconnect=true&useSSL=false
       SPRING_DATASOURCE_USERNAME: "admin"
-      SPRING_DATASOURCE_PASSWORD: "root"
+      SPRING_DATASOURCE_PASSWORD: "pass"
     build:
       context: "./"
       dockerfile: Dockerfile
@@ -32,5 +34,7 @@ services:
       - backend
 volumes:
   db:
+    driver: local
 networks:
   backend:
+    driver: bridge
