@@ -1,6 +1,6 @@
 package com.illia.krasnienkov.movie.controller;
 
-import com.illia.krasnienkov.movie.dto.RoleDto;
+import com.illia.krasnienkov.movie.dto.model_dtos.RoleDto;
 import com.illia.krasnienkov.movie.model.Role;
 import com.illia.krasnienkov.movie.service.impl.RoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

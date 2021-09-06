@@ -1,6 +1,6 @@
 package com.illia.krasnienkov.movie.service;
 
-import com.illia.krasnienkov.movie.dto.CountryDto;
+import com.illia.krasnienkov.movie.dto.model_dtos.CountryDto;
 import com.illia.krasnienkov.movie.model.Country;
 
 import java.util.List;

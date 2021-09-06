@@ -1,9 +1,8 @@
 package com.illia.krasnienkov.movie.service.impl;
 
-import com.illia.krasnienkov.movie.dto.MovieDto;
-import com.illia.krasnienkov.movie.dto.UserDto;
+import com.illia.krasnienkov.movie.dto.model_dtos.MovieDto;
+import com.illia.krasnienkov.movie.dto.movie_info.MovieInformationDto;
 import com.illia.krasnienkov.movie.model.Movie;
-import com.illia.krasnienkov.movie.model.User;
 import com.illia.krasnienkov.movie.repository.MovieRepository;
 import com.illia.krasnienkov.movie.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -65,4 +63,10 @@ public class MovieServiceImpl implements MovieService {
         Movie randomMovie = movieRepository.namedGetRandomMovie();
         return service.convert(randomMovie, MovieDto.class);
     }
+
+    public List<Object[]> getMovieInformation(String id) {
+        return movieRepository.namedGetAllMovieInfo(id);
+    }
+
+
 }

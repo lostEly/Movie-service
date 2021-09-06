@@ -1,6 +1,6 @@
 package com.illia.krasnienkov.movie.controller;
 
-import com.illia.krasnienkov.movie.dto.UserDto;
+import com.illia.krasnienkov.movie.dto.model_dtos.UserDto;
 import com.illia.krasnienkov.movie.model.User;
 import com.illia.krasnienkov.movie.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")

@@ -1,6 +1,6 @@
 package com.illia.krasnienkov.movie.service.impl;
 
-import com.illia.krasnienkov.movie.dto.ProfessionDto;
+import com.illia.krasnienkov.movie.dto.model_dtos.ProfessionDto;
 import com.illia.krasnienkov.movie.exceptions.ResourceNotFoundException;
 import com.illia.krasnienkov.movie.model.Profession;
 import com.illia.krasnienkov.movie.model.User;

@@ -1,6 +1,6 @@
 package com.illia.krasnienkov.movie.service.impl;
 
-import com.illia.krasnienkov.movie.dto.CountryDto;
+import com.illia.krasnienkov.movie.dto.model_dtos.CountryDto;
 import com.illia.krasnienkov.movie.exceptions.ResourceNotFoundException;
 import com.illia.krasnienkov.movie.model.Country;
 import com.illia.krasnienkov.movie.model.User;

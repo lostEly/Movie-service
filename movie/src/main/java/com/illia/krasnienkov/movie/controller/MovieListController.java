@@ -1,6 +1,6 @@
 package com.illia.krasnienkov.movie.controller;
 
-import com.illia.krasnienkov.movie.dto.MovieListDto;
+import com.illia.krasnienkov.movie.dto.model_dtos.MovieListDto;
 import com.illia.krasnienkov.movie.model.MovieList;
 import com.illia.krasnienkov.movie.service.impl.MovieListServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

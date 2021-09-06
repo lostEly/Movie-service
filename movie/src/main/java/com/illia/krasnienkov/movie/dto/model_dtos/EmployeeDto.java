@@ -1,4 +1,4 @@
-package com.illia.krasnienkov.movie.dto;
+package com.illia.krasnienkov.movie.dto.model_dtos;
 
 public class EmployeeDto {
 

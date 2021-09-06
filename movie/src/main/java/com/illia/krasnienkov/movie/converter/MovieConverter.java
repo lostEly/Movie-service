@@ -1,7 +1,7 @@
 package com.illia.krasnienkov.movie.converter;
 
 import com.illia.krasnienkov.movie.model.Movie;
-import com.illia.krasnienkov.movie.dto.MovieDto;
+import com.illia.krasnienkov.movie.dto.model_dtos.MovieDto;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 

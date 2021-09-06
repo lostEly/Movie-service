@@ -1,6 +1,7 @@
 package com.illia.krasnienkov.movie.controller;
 
-import com.illia.krasnienkov.movie.dto.MovieDto;
+import com.illia.krasnienkov.movie.dto.model_dtos.MovieDto;
+import com.illia.krasnienkov.movie.dto.movie_info.MovieInformationDto;
 import com.illia.krasnienkov.movie.model.Movie;
 import com.illia.krasnienkov.movie.service.impl.MovieServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/movies")
@@ -63,5 +63,11 @@ public class MovieController {
     public ResponseEntity<MovieDto> getRandomMovie(){
         MovieDto movieDto = movieServiceImpl.getRandomMovie();
         return new ResponseEntity<>(movieDto, HttpStatus.OK);
+    }
+
+    @GetMapping("/movie-info/{id}")
+    public ResponseEntity<List<Object[]>> getMovieInformation(@PathVariable String id){
+        List<Object[]> movieInformationDto = movieServiceImpl.getMovieInformation(id);
+        return new ResponseEntity<>(movieInformationDto, HttpStatus.OK);
     }
 }

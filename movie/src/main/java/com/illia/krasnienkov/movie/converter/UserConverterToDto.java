@@ -1,7 +1,7 @@
 package com.illia.krasnienkov.movie.converter;
 
-import com.illia.krasnienkov.movie.dto.RoleDto;
-import com.illia.krasnienkov.movie.dto.UserDto;
+import com.illia.krasnienkov.movie.dto.model_dtos.RoleDto;
+import com.illia.krasnienkov.movie.dto.model_dtos.UserDto;
 import com.illia.krasnienkov.movie.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;

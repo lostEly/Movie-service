@@ -1,7 +1,6 @@
 package com.illia.krasnienkov.movie.service.impl;
 
-import com.illia.krasnienkov.movie.dto.MovieListDto;
-import com.illia.krasnienkov.movie.dto.UserDto;
+import com.illia.krasnienkov.movie.dto.model_dtos.MovieListDto;
 import com.illia.krasnienkov.movie.exceptions.ResourceNotFoundException;
 import com.illia.krasnienkov.movie.model.MovieList;
 import com.illia.krasnienkov.movie.model.User;

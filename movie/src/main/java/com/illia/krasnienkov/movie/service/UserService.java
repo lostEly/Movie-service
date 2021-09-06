@@ -1,6 +1,6 @@
 package com.illia.krasnienkov.movie.service;
 
-import com.illia.krasnienkov.movie.dto.UserDto;
+import com.illia.krasnienkov.movie.dto.model_dtos.UserDto;
 import com.illia.krasnienkov.movie.model.User;
 
 import java.util.List;

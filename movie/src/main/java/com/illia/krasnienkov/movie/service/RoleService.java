@@ -1,6 +1,6 @@
 package com.illia.krasnienkov.movie.service;
 
-import com.illia.krasnienkov.movie.dto.RoleDto;
+import com.illia.krasnienkov.movie.dto.model_dtos.RoleDto;
 import com.illia.krasnienkov.movie.model.Role;
 
 import java.util.Set;
