@@ -30,4 +30,24 @@ public class EmployeeInformationDto {
     public void setProfessions(Set<String> professions) {
         this.professions = professions;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        EmployeeInformationDto that = (EmployeeInformationDto) o;
+
+        if (!employeeName.equals(that.employeeName)) return false;
+        if (!employeeLastName.equals(that.employeeLastName)) return false;
+        return professions != null ? professions.equals(that.professions) : that.professions == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = employeeName.hashCode();
+        result = 31 * result + employeeLastName.hashCode();
+        result = 31 * result + (professions != null ? professions.hashCode() : 0);
+        return result;
+    }
 }

@@ -3,14 +3,10 @@ services:
   db:
     image: 'mysql:latest'
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_USER=admin
-      - MYSQL_PASSWORD=pass
-      - MYSQL_DATABASE=movie
-    ports:
-      - "3308:3306"
-    expose:
-      - 3306
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+      MYSQL_DATABASE: movie
     volumes:
       - './db:/var/lib/mysql'
     restart: always
@@ -21,11 +17,11 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/movie?autoReconnect=true&useSSL=false
-      SPRING_DATASOURCE_USERNAME: "admin"
-      SPRING_DATASOURCE_PASSWORD: "pass"
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/movie?autoReconnect=true&failOverReadOnly=false&maxReconnects=10
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
     build:
-      context: "./"
+      context: "src/test"
       dockerfile: Dockerfile
     restart: always
     depends_on:

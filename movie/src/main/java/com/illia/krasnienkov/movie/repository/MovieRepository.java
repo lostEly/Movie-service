@@ -2,6 +2,7 @@ package com.illia.krasnienkov.movie.repository;
 
 import com.illia.krasnienkov.movie.dto.movie_info.EmployeeInformationDto;
 import com.illia.krasnienkov.movie.dto.movie_info.MovieInformationDto;
+import com.illia.krasnienkov.movie.dto.movie_info.MovieInformationRow;
 import com.illia.krasnienkov.movie.model.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -23,5 +24,5 @@ public interface MovieRepository extends JpaRepository<Movie, String> {
 
     @Query(nativeQuery = true)
 //    @NamedNativeQuery( name = "Info", query = "SELECT * from movie;", resultSetMapping = "MovieInfo")
-    List<Object[]> namedGetAllMovieInfo(@Param("id") String id);
+    List<MovieInformationRow> namedGetAllMovieInfo(@Param("id") String id);
 }

@@ -2,6 +2,7 @@ package com.illia.krasnienkov.movie.controller;
 
 import com.illia.krasnienkov.movie.dto.model_dtos.MovieDto;
 import com.illia.krasnienkov.movie.dto.movie_info.MovieInformationDto;
+import com.illia.krasnienkov.movie.dto.movie_info.MovieInformationRow;
 import com.illia.krasnienkov.movie.model.Movie;
 import com.illia.krasnienkov.movie.service.impl.MovieServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,8 +67,8 @@ public class MovieController {
     }
 
     @GetMapping("/movie-info/{id}")
-    public ResponseEntity<List<Object[]>> getMovieInformation(@PathVariable String id){
-        List<Object[]> movieInformationDto = movieServiceImpl.getMovieInformation(id);
+    public ResponseEntity<MovieInformationDto> getMovieInformation(@PathVariable String id){
+        MovieInformationDto movieInformationDto = movieServiceImpl.getMovieInformation(id);
         return new ResponseEntity<>(movieInformationDto, HttpStatus.OK);
     }
 }

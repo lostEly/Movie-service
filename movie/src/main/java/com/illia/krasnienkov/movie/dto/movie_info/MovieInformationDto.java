@@ -3,36 +3,36 @@ package com.illia.krasnienkov.movie.dto.movie_info;
 import javax.persistence.EntityResult;
 import javax.persistence.FieldResult;
 import javax.persistence.SqlResultSetMapping;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 
-@SqlResultSetMapping(name = "MovieInfo",
-        entities = {
-                @EntityResult(entityClass = MovieInformationDto.class, fields = {
-                        @FieldResult(name = "movieName", column = "movie_name"),
-                        @FieldResult(name = "description", column = "description"),
-                        @FieldResult(name = "duration", column = "duration"),
-                        @FieldResult(name = "rating", column = "rating"),
-                        @FieldResult(name = "releaseDate", column = "release_date"),
-                        @FieldResult(name = "genreName", column = "genre_name")
-                }),
-                @EntityResult(entityClass = EmployeeInformationDto.class, fields = {
-                        @FieldResult(name = "employeeName", column = "employee_name"),
-                        @FieldResult(name = "employeeLastName", column = "employee_last_name"),
-                        @FieldResult(name = "professionName", column = "profession")
-                })
-        })
+//@SqlResultSetMapping(name = "MovieInfo",
+//        entities = {
+//                @EntityResult(entityClass = MovieInformationDto.class, fields = {
+//                        @FieldResult(name = "movieName", column = "movie_name"),
+//                        @FieldResult(name = "description", column = "description"),
+//                        @FieldResult(name = "duration", column = "duration"),
+//                        @FieldResult(name = "rating", column = "rating"),
+//                        @FieldResult(name = "releaseDate", column = "release_date"),
+//                        @FieldResult(name = "genreName", column = "genre_name")
+//                }),
+//                @EntityResult(entityClass = EmployeeInformationDto.class, fields = {
+//                        @FieldResult(name = "employeeName", column = "employee_name"),
+//                        @FieldResult(name = "employeeLastName", column = "employee_last_name"),
+//                        @FieldResult(name = "professionName", column = "profession")
+//                })
+//        })
 public class MovieInformationDto {
     private String movieName;
     private String description;
-    private Duration duration;
+    private String duration;
     private Double rating;
     private LocalDate releaseDate;
-    private List<String> genreName;
-    private List<String> countryName;
-    private List<EmployeeInformationDto> employees;
+    private Set<String> genreName;
+    private Set<String> countryName;
+    private Set<EmployeeInformationDto> employees;
 
     public String getMovieName() {
         return movieName;
@@ -50,11 +50,11 @@ public class MovieInformationDto {
         this.description = description;
     }
 
-    public Duration getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(Duration duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 
@@ -74,27 +74,27 @@ public class MovieInformationDto {
         this.releaseDate = releaseDate;
     }
 
-    public List<String> getGenreName() {
+    public Set<String> getGenreName() {
         return genreName;
     }
 
-    public void setGenreName(List<String> genreName) {
+    public void setGenreName(Set<String> genreName) {
         this.genreName = genreName;
     }
 
-    public List<String> getCountryName() {
+    public Set<String> getCountryName() {
         return countryName;
     }
 
-    public void setCountryName(List<String> countryName) {
+    public void setCountryName(Set<String> countryName) {
         this.countryName = countryName;
     }
 
-    public List<EmployeeInformationDto> getEmployees() {
+    public Set<EmployeeInformationDto> getEmployees() {
         return employees;
     }
 
-    public void setEmployees(List<EmployeeInformationDto> employees) {
+    public void setEmployees(Set<EmployeeInformationDto> employees) {
         this.employees = employees;
     }
 }
