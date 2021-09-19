@@ -5,9 +5,10 @@ import picocli.CommandLine;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
+@CommandLine.Command(name = "sectiondemo", description = "Section demo")
 public class Main implements Callable<Integer> {
 
-    @CommandLine.Option(names = {"-l", "--location"})
+    @CommandLine.Option(names = {"-l", "--location"}, description = "pass path with double quotes")
     private String location = "./";
 
     @CommandLine.Option(names = {"-c", "--columns"}, description = "include column names in csv?")

@@ -40,7 +40,8 @@ public class DbReader {
     public void readTablesAndGenerateCsv(ArrayList<String> tableNames, String location, Boolean includeColumnNames) {
         try {
             for (String tableName : tableNames) {
-                Path path = Paths.get(location + tableName + ".csv");
+                String pathToWrite = location + "\\" + tableName + ".csv";
+                Path path = Paths.get(pathToWrite);
                 String query = "select * from " + tableName;
                 Statement statement = connection.createStatement();
                 ResultSet rs = statement.executeQuery(query);
