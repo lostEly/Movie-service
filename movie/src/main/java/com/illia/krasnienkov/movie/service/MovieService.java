@@ -25,4 +25,8 @@ public interface MovieService extends ModelsService<MovieDto, Movie> {
 
     @Override
     void deleteById(String id);
+
+    public MovieInformationDto getMovieInformation(String id);
+
+    public MovieDto getRandomMovie();
 }

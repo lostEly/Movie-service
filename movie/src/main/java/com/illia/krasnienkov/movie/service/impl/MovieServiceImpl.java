@@ -63,7 +63,7 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public void deleteById(String id) {
-
+        return;
     }
 
     @Override
@@ -99,6 +99,4 @@ public class MovieServiceImpl implements MovieService {
         movieInformationDto.setEmployees(employeesInformation);
         return movieInformationDto;
     }
-
-
 }
