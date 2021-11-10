@@ -38,4 +38,24 @@ public class Employee extends Audit {
     public Set<Profession> getProfessions() {
         return professions;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        if (!name.equals(employee.name)) return false;
+        if (!lastName.equals(employee.lastName)) return false;
+        return professions.equals(employee.professions);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + lastName.hashCode();
+        result = 31 * result + professions.hashCode();
+        return result;
+    }
 }

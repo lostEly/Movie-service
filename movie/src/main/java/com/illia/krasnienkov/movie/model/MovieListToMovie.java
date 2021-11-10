@@ -43,4 +43,24 @@ public class MovieListToMovie extends Audit {
     public void setDateAdded(LocalDate dateAdded) {
         this.dateAdded = dateAdded;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MovieListToMovie that = (MovieListToMovie) o;
+
+        if (movieList != null ? !movieList.equals(that.movieList) : that.movieList != null) return false;
+        if (movie != null ? !movie.equals(that.movie) : that.movie != null) return false;
+        return dateAdded != null ? dateAdded.equals(that.dateAdded) : that.dateAdded == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = movieList != null ? movieList.hashCode() : 0;
+        result = 31 * result + (movie != null ? movie.hashCode() : 0);
+        result = 31 * result + (dateAdded != null ? dateAdded.hashCode() : 0);
+        return result;
+    }
 }

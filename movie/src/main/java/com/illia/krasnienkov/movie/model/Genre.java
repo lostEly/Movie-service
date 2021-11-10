@@ -49,4 +49,22 @@ public class Genre extends Audit {
     public Set<Genre> getSubGenres() {
         return subGenres;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Genre genre = (Genre) o;
+
+        if (!name.equals(genre.name)) return false;
+        return parentGenre.equals(genre.parentGenre);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + parentGenre.hashCode();
+        return result;
+    }
 }

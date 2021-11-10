@@ -59,6 +59,28 @@ public class MovieList extends Audit {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MovieList movieList = (MovieList) o;
+
+        if (name != null ? !name.equals(movieList.name) : movieList.name != null) return false;
+        if (comment != null ? !comment.equals(movieList.comment) : movieList.comment != null) return false;
+        if (user != null ? !user.equals(movieList.user) : movieList.user != null) return false;
+        return movieListType == movieList.movieListType;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (comment != null ? comment.hashCode() : 0);
+        result = 31 * result + (user != null ? user.hashCode() : 0);
+        result = 31 * result + (movieListType != null ? movieListType.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "MovieList{" +
                 "name='" + name + '\'' +
@@ -71,4 +93,5 @@ public class MovieList extends Audit {
     public enum MovieListType {
         WILL, WATCHED, FAVOURITE, CUSTOM
     }
+
 }

@@ -119,4 +119,28 @@ public class Movie extends Audit {
     public void setMovieListToMovies(List<MovieListToMovie> movieListToMovies) {
         this.movieListToMovies = movieListToMovies;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Movie movie = (Movie) o;
+
+        if (name != null ? !name.equals(movie.name) : movie.name != null) return false;
+        if (description != null ? !description.equals(movie.description) : movie.description != null) return false;
+        if (duration != null ? !duration.equals(movie.duration) : movie.duration != null) return false;
+        if (releaseDate != null ? !releaseDate.equals(movie.releaseDate) : movie.releaseDate != null) return false;
+        return rating != null ? rating.equals(movie.rating) : movie.rating == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (duration != null ? duration.hashCode() : 0);
+        result = 31 * result + (releaseDate != null ? releaseDate.hashCode() : 0);
+        result = 31 * result + (rating != null ? rating.hashCode() : 0);
+        return result;
+    }
 }
