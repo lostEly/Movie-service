@@ -11,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +40,10 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public List<MovieDto> readAll() {
-        return null;
+        return movieRepository.findAll()
+                .stream()
+                .map(movie -> service.convert(movie,MovieDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override

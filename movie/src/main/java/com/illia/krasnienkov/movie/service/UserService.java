@@ -14,8 +14,6 @@ public interface UserService {
 
     UserDto readById(String id);
 
-    UserDto readById1(String id);
-
     UserDto update(User user);
 
     UserDto patch(Map<String, Object> fields, String id);

@@ -73,4 +73,29 @@ public class MovieDto {
                 ", rating=" + rating +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MovieDto movieDto = (MovieDto) o;
+
+        if (!movieId.equals(movieDto.movieId)) return false;
+        if (!name.equals(movieDto.name)) return false;
+        if (description != null ? !description.equals(movieDto.description) : movieDto.description != null)
+            return false;
+        if (!duration.equals(movieDto.duration)) return false;
+        if (releaseDate != null ? !releaseDate.equals(movieDto.releaseDate) : movieDto.releaseDate != null)
+            return false;
+        return rating.equals(movieDto.rating);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = movieId.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + rating.hashCode();
+        return result;
+    }
 }

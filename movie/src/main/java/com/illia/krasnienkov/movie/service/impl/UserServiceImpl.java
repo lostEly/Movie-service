@@ -59,12 +59,6 @@ public class UserServiceImpl implements UserService {
     }
 
     public UserDto readById(String id) {
-        String formattedId = id.replace("-", "");
-        User user = userRepository.namedFindUserById(formattedId);
-        return service.convert(user, UserDto.class);
-    }
-
-    public UserDto readById1(String id) {
         User user = findUserById(id);
         return service.convert(user, UserDto.class);
     }

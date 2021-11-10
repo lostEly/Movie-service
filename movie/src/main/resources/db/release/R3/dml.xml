@@ -5,8 +5,12 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
 
-    <include file="db/release/R1/ddl.xml"/>
-    <include file="db/release/R1/dml.xml"/>
-<!--    <include file="db/release/R2/ddl.xml"/>-->
-<!--    <include file="db/release/R2/dml.xml"/>-->
+    <changeSet id="load_employees" author="ikrasni" context="dml">
+        <sqlFile path="db/release/R2/sql/Employee.sql"/>
+    </changeSet>
+
+    <changeSet id="create_relations_on_movie" author="ikrasni" context="dml">
+        <sqlFile path="db/release/R2/sql/relocate_data_from_user_dml.sql"/>
+    </changeSet>
+
 </databaseChangeLog>

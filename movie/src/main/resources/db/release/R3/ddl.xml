@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="set_actor_when_employee_created_trigger" author="ikrasni" context="ddl">
+        <sqlFile path="db/release/R2/sql/set_actor_when_employee_created_trigger.sql"/>
+    </changeSet>
+
+    <changeSet id="delete_relation_if_employee_is_removed_trigger" author="ikrasni" context="ddl">
+        <sqlFile path="db/release/R2/sql/create_additional_tables_for_user_ddl.sql"/>
+    </changeSet>
+
+</databaseChangeLog>

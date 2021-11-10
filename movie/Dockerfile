@@ -7,6 +7,6 @@ RUN mvn clean package -DskipTests
 
 FROM openjdk:11-jre-slim
 VOLUME /tmp
-COPY --from=build ./target/movie-1.0.1-SNAPSHOT.jar /usr/local/lib/movie.jar
+COPY --from=build ./target/*.jar /usr/local/lib/movie.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/usr/local/lib/movie.jar"]

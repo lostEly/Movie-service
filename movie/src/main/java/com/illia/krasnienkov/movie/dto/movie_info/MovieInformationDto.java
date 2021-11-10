@@ -1,29 +1,8 @@
 package com.illia.krasnienkov.movie.dto.movie_info;
 
-import javax.persistence.EntityResult;
-import javax.persistence.FieldResult;
-import javax.persistence.SqlResultSetMapping;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 
-
-//@SqlResultSetMapping(name = "MovieInfo",
-//        entities = {
-//                @EntityResult(entityClass = MovieInformationDto.class, fields = {
-//                        @FieldResult(name = "movieName", column = "movie_name"),
-//                        @FieldResult(name = "description", column = "description"),
-//                        @FieldResult(name = "duration", column = "duration"),
-//                        @FieldResult(name = "rating", column = "rating"),
-//                        @FieldResult(name = "releaseDate", column = "release_date"),
-//                        @FieldResult(name = "genreName", column = "genre_name")
-//                }),
-//                @EntityResult(entityClass = EmployeeInformationDto.class, fields = {
-//                        @FieldResult(name = "employeeName", column = "employee_name"),
-//                        @FieldResult(name = "employeeLastName", column = "employee_last_name"),
-//                        @FieldResult(name = "professionName", column = "profession")
-//                })
-//        })
 public class MovieInformationDto {
     private String movieName;
     private String description;
@@ -97,4 +76,30 @@ public class MovieInformationDto {
     public void setEmployees(Set<EmployeeInformationDto> employees) {
         this.employees = employees;
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MovieInformationDto that = (MovieInformationDto) o;
+
+        if (!movieName.equals(that.movieName)) return false;
+        if (description != null ? !description.equals(that.description) : that.description != null) return false;
+        if (!duration.equals(that.duration)) return false;
+        if (!rating.equals(that.rating)) return false;
+        return releaseDate.equals(that.releaseDate);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = movieName.hashCode();
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + duration.hashCode();
+        result = 31 * result + rating.hashCode();
+        result = 31 * result + releaseDate.hashCode();
+        return result;
+    }
+
 }

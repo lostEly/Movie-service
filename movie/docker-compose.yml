@@ -12,16 +12,18 @@ services:
     restart: always
     networks:
       - backend
+    command:
+      "--log_bin_trust_function_creators=1"
   app:
     image: 'adoptopenjdk/openjdk11'
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/movie?autoReconnect=true&failOverReadOnly=false&maxReconnects=10
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/movie?autoReconnect=true&failOverReadOnly=false&maxReconnects=10&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
     build:
-      context: "src/test"
+      context: "./"
       dockerfile: Dockerfile
     restart: always
     depends_on:

@@ -12,14 +12,14 @@ import java.time.LocalDateTime;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<?> resourceNotFoundHandling(ResourceNotFoundException exception, WebRequest request) {
+    public ResponseEntity<ErrorDetails> resourceNotFoundHandling(ResourceNotFoundException exception, WebRequest request) {
         ErrorDetails errorDetails =
                 new ErrorDetails(LocalDateTime.now(), exception.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<?> globalExceptionHandling(Exception exception, WebRequest request) {
+    public ResponseEntity<ErrorDetails> globalExceptionHandling(Exception exception, WebRequest request) {
         ErrorDetails errorDetails =
                 new ErrorDetails(LocalDateTime.now(), exception.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);

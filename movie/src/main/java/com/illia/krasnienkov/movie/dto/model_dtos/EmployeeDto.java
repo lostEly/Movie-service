@@ -21,4 +21,22 @@ public class EmployeeDto {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        EmployeeDto that = (EmployeeDto) o;
+
+        if (!name.equals(that.name)) return false;
+        return lastName.equals(that.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + lastName.hashCode();
+        return result;
+    }
 }

@@ -2,8 +2,8 @@ package com.illia.krasnienkov.movie.controller;
 
 import com.illia.krasnienkov.movie.dto.model_dtos.MovieDto;
 import com.illia.krasnienkov.movie.dto.movie_info.MovieInformationDto;
-import com.illia.krasnienkov.movie.dto.movie_info.MovieInformationRow;
 import com.illia.krasnienkov.movie.model.Movie;
+import com.illia.krasnienkov.movie.service.MovieService;
 import com.illia.krasnienkov.movie.service.impl.MovieServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,58 +17,58 @@ import java.util.Map;
 @RequestMapping("/movies")
 public class MovieController {
 
-    private MovieServiceImpl movieServiceImpl;
+    private MovieService movieService;
 
     @Autowired
-    public void setMovieService(MovieServiceImpl movieServiceImpl) {
-        this.movieServiceImpl = movieServiceImpl;
+    public void setMovieService(MovieService movieService) {
+        this.movieService = movieService;
     }
 
     @PostMapping
     public ResponseEntity<MovieDto> create(@RequestBody Movie movie) {
-        MovieDto movieDtoCreated = movieServiceImpl.create(movie);
+        MovieDto movieDtoCreated = movieService.create(movie);
         return new ResponseEntity<>(movieDtoCreated, HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<List<MovieDto>> readAll() {
-        List<MovieDto> movieDtoList = movieServiceImpl.readAll();
+        List<MovieDto> movieDtoList = movieService.readAll();
         return new ResponseEntity<>(movieDtoList, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<MovieDto> readById(@PathVariable String id) {
-        MovieDto movieDto = movieServiceImpl.readById(id);
+        MovieDto movieDto = movieService.readById(id);
         return new ResponseEntity<>(movieDto, HttpStatus.OK);
     }
 
     @PutMapping
     public ResponseEntity<MovieDto> update(@RequestBody Movie movie) {
-        MovieDto updatedMovie = movieServiceImpl.update(movie);
+        MovieDto updatedMovie = movieService.update(movie);
         return new ResponseEntity<>(updatedMovie, HttpStatus.OK);
     }
 
     @PatchMapping("/{id}")
     public ResponseEntity<MovieDto> patch(@RequestBody Map<String, Object> fields, @PathVariable String id) {
-        MovieDto movieDto = movieServiceImpl.patch(fields, id);
+        MovieDto movieDto = movieService.patch(fields, id);
         return new ResponseEntity<>(movieDto, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable String id) {
-        movieServiceImpl.deleteById(id);
+    public ResponseEntity<Object> delete(@PathVariable String id) {
+        movieService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/random")
     public ResponseEntity<MovieDto> getRandomMovie(){
-        MovieDto movieDto = movieServiceImpl.getRandomMovie();
+        MovieDto movieDto = movieService.getRandomMovie();
         return new ResponseEntity<>(movieDto, HttpStatus.OK);
     }
 
     @GetMapping("/movie-info/{id}")
     public ResponseEntity<MovieInformationDto> getMovieInformation(@PathVariable String id){
-        MovieInformationDto movieInformationDto = movieServiceImpl.getMovieInformation(id);
+        MovieInformationDto movieInformationDto = movieService.getMovieInformation(id);
         return new ResponseEntity<>(movieInformationDto, HttpStatus.OK);
     }
 }

@@ -39,12 +39,6 @@ public class UserController {
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
-    @GetMapping("/zxc/{id}")
-    public ResponseEntity<UserDto> readById1(@PathVariable String id) {
-        UserDto userDto = userServiceImpl.readById1(id);
-        return new ResponseEntity<>(userDto, HttpStatus.OK);
-    }
-
     @PutMapping
     public ResponseEntity<UserDto> update(@RequestBody User user) {
         UserDto updatedUser = userServiceImpl.update(user);

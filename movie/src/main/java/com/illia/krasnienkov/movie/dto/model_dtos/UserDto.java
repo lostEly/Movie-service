@@ -80,6 +80,35 @@ public class UserDto {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserDto userDto = (UserDto) o;
+
+        if (!id.equals(userDto.id)) return false;
+        if (!name.equals(userDto.name)) return false;
+        if (!lastName.equals(userDto.lastName)) return false;
+        if (sex != null ? !sex.equals(userDto.sex) : userDto.sex != null) return false;
+        if (dateOfBirthday != null ? !dateOfBirthday.equals(userDto.dateOfBirthday) : userDto.dateOfBirthday != null)
+            return false;
+        if (!telephone.equals(userDto.telephone)) return false;
+        return email.equals(userDto.email);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + lastName.hashCode();
+        result = 31 * result + (sex != null ? sex.hashCode() : 0);
+        result = 31 * result + (dateOfBirthday != null ? dateOfBirthday.hashCode() : 0);
+        result = 31 * result + telephone.hashCode();
+        result = 31 * result + email.hashCode();
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "UserDto{" +
                 "id=" + id +

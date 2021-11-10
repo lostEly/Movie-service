@@ -32,6 +32,26 @@ public class MovieListToMovieDto {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MovieListToMovieDto that = (MovieListToMovieDto) o;
+
+        if (!movieListDto.equals(that.movieListDto)) return false;
+        if (!movieDto.equals(that.movieDto)) return false;
+        return dateAdded.equals(that.dateAdded);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = movieListDto.hashCode();
+        result = 31 * result + movieDto.hashCode();
+        result = 31 * result + dateAdded.hashCode();
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "MovieListToMovieDto{" +
                 "movieListDto=" + movieListDto +
