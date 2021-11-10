@@ -15,7 +15,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -78,8 +81,10 @@ public class UserServiceImpl implements UserService {
         User user = findUserById(id);
         fields.forEach((k, v) -> {
             Field field = ReflectionUtils.findField(User.class, k);
-            field.setAccessible(true);
-            ReflectionUtils.setField(field, user, v);
+            if (field != null) {
+                field.setAccessible(true);
+                ReflectionUtils.setField(field, user, v);
+            }
         });
         User patchedUser = userRepository.save(user);
         LOGGER.info("User with id + " + user.getId() + " is patched");
