@@ -10,6 +10,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -44,6 +46,26 @@ public class RoleServiceImpl implements RoleService {
     public RoleDto create(Role role) {
         Role createdRole = roleRepository.save(role);
         return service.convert(createdRole, RoleDto.class);
+    }
+
+    @Override
+    public List<RoleDto> readAll() {
+        return null;
+    }
+
+    @Override
+    public RoleDto readById(String id) {
+        return null;
+    }
+
+    @Override
+    public RoleDto update(Role role) {
+        return null;
+    }
+
+    @Override
+    public RoleDto patch(Map<String, Object> fields, String id) {
+        return null;
     }
 
     public void deleteById(String id) {
