@@ -10,32 +10,23 @@ import com.illia.krasnienkov.movie.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ReflectionUtils;
 
-import java.lang.reflect.Field;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends ModelsServiceImpl<UserDto, User> implements UserService {
     private static final Logger LOGGER = LogManager.getLogger(UserServiceImpl.class);
-    private UserRepository userRepository;
-    private ConversionService service;
+    private final UserRepository userRepository = (UserRepository) this.repository;
     private RoleServiceImpl roleService;
 
     @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    @Autowired
-    public void setService(ConversionService service) {
-        this.service = service;
+    protected UserServiceImpl(@Qualifier("userRepository") JpaRepository<User, String> repository, ConversionService service) {
+        super(repository, service, UserDto.class, User.class);
     }
 
     @Autowired
@@ -43,6 +34,7 @@ public class UserServiceImpl implements UserService {
         this.roleService = roleService;
     }
 
+    @Override
     public UserDto create(User user) {
         LOGGER.info("Started creating user");
         convertRoles(user);
@@ -52,20 +44,12 @@ public class UserServiceImpl implements UserService {
         return newUserDto;
     }
 
-    public List<UserDto> readAll() {
-        LOGGER.info("Started reading all users");
-        List<User> users = userRepository.findAll();
-        LOGGER.info("Read all users");
-        return users.stream()
-                .map(user -> service.convert(user, UserDto.class))
-                .collect(Collectors.toList());
-    }
-
     public UserDto readById(String id) {
-        User user = findUserById(id);
+        User user = findById(id);
         return service.convert(user, UserDto.class);
     }
 
+    @Override
     public UserDto update(User user) {
         LOGGER.warn("Started updating user with id + " + user.getId());
         if (user.getId() == null)
@@ -74,40 +58,6 @@ public class UserServiceImpl implements UserService {
         User updatedUser = userRepository.save(user);
         LOGGER.info("User with id + " + user.getId() + " is updated");
         return service.convert(updatedUser, UserDto.class);
-    }
-
-    public UserDto patch(Map<String, Object> fields, String id) {
-        LOGGER.warn("Started patching user with id + " + id);
-        User user = findUserById(id);
-        fields.forEach((k, v) -> {
-            Field field = ReflectionUtils.findField(User.class, k);
-            if (field != null) {
-                field.setAccessible(true);
-                ReflectionUtils.setField(field, user, v);
-            }
-        });
-        User patchedUser = userRepository.save(user);
-        LOGGER.info("User with id + " + user.getId() + " is patched");
-        return service.convert(patchedUser, UserDto.class);
-    }
-
-    public void deleteById(String id) {
-        LOGGER.warn("Started deleting user with id " + id);
-        User user = findUserById(id);
-        userRepository.delete(user);
-        LOGGER.info("Finished deleting user with id " + id);
-    }
-
-    private User findUserById(String id) {
-        LOGGER.info("Started reading user by id");
-        Optional<User> optionalUser = userRepository.findById(id);
-        if (optionalUser.isEmpty()) {
-            LOGGER.error("User with id + " + id + " not found");
-            throw new ResourceNotFoundException("User with id " + id);
-        }
-        User user = optionalUser.get();
-        LOGGER.info("Finished reading user by id");
-        return user;
     }
 
     private void convertRoles(User convertedUser) {

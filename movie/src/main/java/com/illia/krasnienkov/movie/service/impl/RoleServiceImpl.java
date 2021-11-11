@@ -5,30 +5,22 @@ import com.illia.krasnienkov.movie.exceptions.ResourceNotFoundException;
 import com.illia.krasnienkov.movie.model.Role;
 import com.illia.krasnienkov.movie.repository.RoleRepository;
 import com.illia.krasnienkov.movie.service.RoleService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class RoleServiceImpl implements RoleService {
-    private RoleRepository roleRepository;
-    private ConversionService service;
+public class RoleServiceImpl extends ModelsServiceImpl<RoleDto, Role> implements RoleService {
 
-    @Autowired
-    public void setRoleRepository(RoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
-    }
+    private final RoleRepository roleRepository = (RoleRepository) this.repository;
 
-    @Autowired
-    public void setService(ConversionService service) {
-        this.service = service;
+    protected RoleServiceImpl(@Qualifier("roleRepository") JpaRepository<Role, String> repository, ConversionService service) {
+        super(repository, service, RoleDto.class, Role.class);
     }
 
     @Cacheable(value = "role-cache")
@@ -43,42 +35,10 @@ public class RoleServiceImpl implements RoleService {
         return roleDtoSet;
     }
 
-    public RoleDto create(Role role) {
-        Role createdRole = roleRepository.save(role);
-        return service.convert(createdRole, RoleDto.class);
-    }
-
-    @Override
-    public List<RoleDto> readAll() {
-        return null;
-    }
-
-    @Override
-    public RoleDto readById(String id) {
-        return null;
-    }
-
-    @Override
-    public RoleDto update(Role role) {
-        return null;
-    }
-
-    @Override
-    public RoleDto patch(Map<String, Object> fields, String id) {
-        return null;
-    }
-
-    public void deleteById(String id) {
-        Optional<Role> role = roleRepository.findById(id);
-        if (role.isEmpty()) {
-            throw new ResourceNotFoundException("Role with id " + id);
-        }
-        roleRepository.deleteById(id);
-    }
-
     public Role findByName(String name) {
         return roleRepository.findByName(name).orElseThrow(() -> {
             throw new ResourceNotFoundException("Such role is");
         });
     }
+
 }

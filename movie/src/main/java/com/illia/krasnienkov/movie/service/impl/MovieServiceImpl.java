@@ -8,72 +8,35 @@ import com.illia.krasnienkov.movie.model.Movie;
 import com.illia.krasnienkov.movie.repository.MovieRepository;
 import com.illia.krasnienkov.movie.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class MovieServiceImpl implements MovieService {
+public class MovieServiceImpl extends ModelsServiceImpl<MovieDto, Movie> implements MovieService {
 
-    private ConversionService service;
-    private MovieRepository movieRepository;
-
-    @Autowired
-    public void setService(ConversionService service) {
-        this.service = service;
-    }
+    private final MovieRepository movieRepository = (MovieRepository) this.repository;
 
     @Autowired
-    public void setMovieRepository(MovieRepository movieRepository) {
-        this.movieRepository = movieRepository;
-    }
-
-    @Override
-    public MovieDto create(Movie movie) {
-        return null;
-    }
-
-    @Override
-    public List<MovieDto> readAll() {
-        return movieRepository.findAll()
-                .stream()
-                .map(movie -> service.convert(movie,MovieDto.class))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public MovieDto readById(String id) {
-        return null;
-    }
-
-    @Override
-    public MovieDto update(Movie movie) {
-        return null;
-    }
-
-    @Override
-    public MovieDto patch(Map<String, Object> fields, String id) {
-        return null;
-    }
-
-    @Override
-    public void deleteById(String id) {
-        return;
+    public MovieServiceImpl(@Qualifier("movieRepository") JpaRepository<Movie, String> repository, ConversionService service) {
+        super(repository, service, MovieDto.class, Movie.class);
     }
 
     @Override
     public MovieDto getRandomMovie() {
-        Movie randomMovie = movieRepository.namedGetRandomMovie();
+        Movie randomMovie = this.movieRepository.namedGetRandomMovie();
         return service.convert(randomMovie, MovieDto.class);
     }
 
+    @Override
     public MovieInformationDto getMovieInformation(String id) {
-        List<MovieInformationRow> list = movieRepository.namedGetAllMovieInfo(id);
+        List<MovieInformationRow> list = this.movieRepository.namedGetAllMovieInfo(id);
         MovieInformationRow row = list.get(0);
         MovieInformationDto movieInformationDto = new MovieInformationDto();
         movieInformationDto.setMovieName(row.getMovieName());
@@ -99,4 +62,5 @@ public class MovieServiceImpl implements MovieService {
         movieInformationDto.setEmployees(employeesInformation);
         return movieInformationDto;
     }
+
 }

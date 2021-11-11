@@ -4,8 +4,10 @@ import com.illia.krasnienkov.movie.dto.model_dtos.MovieDto;
 import com.illia.krasnienkov.movie.dto.movie_info.MovieInformationDto;
 import com.illia.krasnienkov.movie.model.Movie;
 import com.illia.krasnienkov.movie.service.MovieService;
+import com.illia.krasnienkov.movie.service.impl.ModelsServiceImpl;
 import com.illia.krasnienkov.movie.service.impl.MovieServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +19,12 @@ import java.util.Map;
 @RequestMapping("/movies")
 public class MovieController {
 
-    private MovieService movieService;
+    private final MovieService movieService;
 
-    @Autowired
-    public void setMovieService(MovieService movieService) {
+    public MovieController(@Qualifier("movieServiceImpl") MovieService movieService) {
         this.movieService = movieService;
     }
+
 
     @PostMapping
     public ResponseEntity<MovieDto> create(@RequestBody Movie movie) {
@@ -59,16 +61,16 @@ public class MovieController {
         movieService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
-
+//
     @GetMapping("/random")
     public ResponseEntity<MovieDto> getRandomMovie(){
         MovieDto movieDto = movieService.getRandomMovie();
         return new ResponseEntity<>(movieDto, HttpStatus.OK);
     }
-
-    @GetMapping("/movie-info/{id}")
-    public ResponseEntity<MovieInformationDto> getMovieInformation(@PathVariable String id){
-        MovieInformationDto movieInformationDto = movieService.getMovieInformation(id);
-        return new ResponseEntity<>(movieInformationDto, HttpStatus.OK);
-    }
+//
+//    @GetMapping("/movie-info/{id}")
+//    public ResponseEntity<MovieInformationDto> getMovieInformation(@PathVariable String id){
+//        MovieInformationDto movieInformationDto = movieService.getMovieInformation(id);
+//        return new ResponseEntity<>(movieInformationDto, HttpStatus.OK);
+//    }
 }
