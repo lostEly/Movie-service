@@ -21,6 +21,14 @@
         <spring-boot-starter-cache.version>2.5.4</spring-boot-starter-cache.version>
     </properties>
 
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.5.5</version>
+        <relativePath/>
+    </parent>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -46,12 +54,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>2.5.3</version>
+            <version>${spring-boot-starter-data-jpa.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-cache</artifactId>
-            <version>2.5.4</version>
+            <version>${spring-boot-starter-cache.version}</version>
         </dependency>
 
 
