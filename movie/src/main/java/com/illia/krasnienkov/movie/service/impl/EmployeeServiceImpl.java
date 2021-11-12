@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmployeeServiceImpl extends ModelsServiceImpl<EmployeeDto, Employee> implements EmployeeService {
-    private EmployeeRepository employeeRepository;
+    private final EmployeeRepository employeeRepository = (EmployeeRepository) this.repository;
 
     protected EmployeeServiceImpl(@Qualifier("employeeRepository") JpaRepository<Employee, String> repository, ConversionService service) {
         super(repository, service, EmployeeDto.class, Employee.class);

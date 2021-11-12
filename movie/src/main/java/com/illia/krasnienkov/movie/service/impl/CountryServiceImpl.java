@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CountryServiceImpl extends ModelsServiceImpl<CountryDto, Country> implements CountryService {
-    private CountryRepository countryRepository;
+    private final CountryRepository countryRepository = (CountryRepository) this.repository;
 
     protected CountryServiceImpl(@Qualifier("countryRepository") JpaRepository<Country, String> repository, ConversionService service) {
         super(repository, service, CountryDto.class, Country.class);
