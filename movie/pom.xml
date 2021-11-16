@@ -14,14 +14,9 @@
     </parent>
 
     <properties>
-        <disruptor.version>3.4.2</disruptor.version>
         <testcontainers.version>1.16.0</testcontainers.version>
-        <lombok.version>1.18.20</lombok.version>
-        <liquibase-maven-plugin.version>3.4.1</liquibase-maven-plugin.version>
-        <validation-api.version>2.0.1.Final</validation-api.version>
         <springdoc-openapi-ui.version>1.5.11</springdoc-openapi-ui.version>
         <springdoc-openapi-maven-plugin.version>0.2</springdoc-openapi-maven-plugin.version>
-        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
     </properties>
 
     <dependencies>
@@ -105,7 +100,7 @@
             <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
-                <version>4.4.3</version>
+                <version>${liquibase-core.version}</version>
                 <configuration>
                     <propertyFile>src/main/resources/liquibase.properties</propertyFile>
                 </configuration>

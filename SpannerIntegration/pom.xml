@@ -2,52 +2,52 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.4</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+
     <groupId>com.illia.krasnienkov.movie</groupId>
     <artifactId>SpannerIntegration</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>SpannerIntegration</name>
     <description>SpannerIntegration</description>
+
+    <parent>
+        <groupId>com.illia.krasnienkov</groupId>
+        <artifactId>Movie-service</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
     <properties>
         <java.version>11</java.version>
         <liquibase-spanner.version>1.2.2</liquibase-spanner.version>
+        <google-cloud-spanner-jdbc.version>2.4.2</google-cloud-spanner-jdbc.version>
+        <google-cloud-spanner-hibernate-dialect.version>1.5.0</google-cloud-spanner-hibernate-dialect.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
-            <version>4.4.3</version>
+            <version>${liquibase-core.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
             <groupId>com.google.cloudspannerecosystem</groupId>
             <artifactId>liquibase-spanner</artifactId>
-            <version>4.4.3</version>
+            <version>${liquibase-core.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-maven-plugin</artifactId>
-            <version>4.4.3</version>
+            <version>${liquibase-core.version}</version>
         </dependency>
 
         <dependency>
@@ -55,16 +55,19 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>com.google.cloud</groupId>
             <artifactId>google-cloud-spanner-jdbc</artifactId>
-            <version>2.4.2</version>
+            <version>${google-cloud-spanner-jdbc.version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.google.cloud</groupId>
             <artifactId>google-cloud-spanner-hibernate-dialect</artifactId>
-            <version>1.5.0</version>
+            <version>${google-cloud-spanner-hibernate-dialect.version}</version>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -76,7 +79,7 @@
             <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
-                <version>4.4.3</version>
+                <version>${liquibase-core.version}</version>
                 <configuration>
                     <propertyFile>src/main/resources/liquibase.properties</propertyFile>
                     <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
@@ -84,7 +87,7 @@
                 <dependencies><dependency>
                     <groupId>com.google.cloud</groupId>
                     <artifactId>google-cloud-spanner-jdbc</artifactId>
-                    <version>2.4.2</version>
+                    <version>${google-cloud-spanner-jdbc.version}</version>
                 </dependency>
                 </dependencies>
             </plugin>
