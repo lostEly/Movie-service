@@ -3,7 +3,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.illia.krasnienkov.movie</groupId>
     <artifactId>SpannerIntegration</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>SpannerIntegration</name>
@@ -16,7 +15,6 @@
     </parent>
 
     <properties>
-        <java.version>11</java.version>
         <liquibase-spanner.version>1.2.2</liquibase-spanner.version>
         <google-cloud-spanner-jdbc.version>2.4.2</google-cloud-spanner-jdbc.version>
         <google-cloud-spanner-hibernate-dialect.version>1.5.0</google-cloud-spanner-hibernate-dialect.version>
@@ -35,19 +33,17 @@
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
-            <version>${liquibase-core.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.google.cloudspannerecosystem</groupId>
             <artifactId>liquibase-spanner</artifactId>
-            <version>${liquibase-core.version}</version>
+            <version>4.5.0</version>
         </dependency>
 
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-maven-plugin</artifactId>
-            <version>${liquibase-core.version}</version>
         </dependency>
 
         <dependency>
@@ -73,22 +69,31 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
-                <version>${liquibase-core.version}</version>
+                <version>${liquibase.version}</version>
                 <configuration>
                     <propertyFile>src/main/resources/liquibase.properties</propertyFile>
                     <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
                 </configuration>
-                <dependencies><dependency>
-                    <groupId>com.google.cloud</groupId>
-                    <artifactId>google-cloud-spanner-jdbc</artifactId>
-                    <version>${google-cloud-spanner-jdbc.version}</version>
-                </dependency>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.google.cloud</groupId>
+                        <artifactId>google-cloud-spanner-jdbc</artifactId>
+                        <version>${google-cloud-spanner-jdbc.version}</version>
+                    </dependency>
                 </dependencies>
             </plugin>
         </plugins>
