@@ -7,9 +7,6 @@ import com.illia.krasnienkov.movie.service.MovieService;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.HashMap;
-import java.util.Map;
-
 class MovieServiceImplTest extends CommonServiceImplTest<MovieDto, Movie> {
 
 
@@ -23,13 +20,6 @@ class MovieServiceImplTest extends CommonServiceImplTest<MovieDto, Movie> {
         setModel(TestDataFactory.createMovie());
         setDto(TestDataFactory.createMovieDto());
         setUpdatedModel(TestDataFactory.createUpdatedMovie());
-        setPatchFields(createPatchFields());
-    }
-
-    private Map<String, Object> createPatchFields() {
-        Map<String, Object> patchFields = new HashMap<>();
-        patchFields.put("name", "patchedName");
-        patchFields.put("description", "patchedDescription");
-        return patchFields;
+        setPatchFields(TestDataFactory.createMoviePatchFields());
     }
 }

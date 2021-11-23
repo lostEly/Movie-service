@@ -5,6 +5,8 @@ import com.illia.krasnienkov.movie.model.Movie;
 import com.illia.krasnienkov.movie.test_data.MovieTestData;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class TestDataFactory {
@@ -52,4 +54,10 @@ public class TestDataFactory {
         return movieDto;
     }
 
+    public static Map<String, Object> createMoviePatchFields() {
+        Map<String, Object> patchFields = new HashMap<>();
+        patchFields.put("name", "patchedName");
+        patchFields.put("description", "patchedDescription");
+        return patchFields;
+    }
 }

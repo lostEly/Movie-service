@@ -5,13 +5,13 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
 
-<!--    <changeSet id="load_employees" author="ikrasni" context="dml">-->
-<!--        <sqlFile path="db/release/R2/sql/Employee.sql"/>-->
-<!--    </changeSet>-->
+    <changeSet id="load_employees" author="ikrasni" context="dml">
+        <sqlFile path="db/release/R2/sql/Employee.sql"/>
+    </changeSet>
 
-<!--    <changeSet id="create_relations_on_movie" author="ikrasni" context="dml">-->
-<!--        <sqlFile path="db/release/R2/sql/create_relations_on_movie.sql"/>-->
-<!--    </changeSet>-->
+    <changeSet id="create_relations_on_movie" author="ikrasni" context="dml">
+        <sqlFile path="db/release/R2/sql/create_relations_on_movie.sql"/>
+    </changeSet>
 
     <changeSet id="load_users" author="ikrasni" context="dml">
         <sqlFile path="db/release/R2/sql/Userr.sql"/>
