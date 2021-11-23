@@ -13,7 +13,7 @@ public class RoleConverterToDto implements Converter<Role, RoleDto> {
     @Override
     public RoleDto convert(Role role) {
         RoleDto roleDto = new RoleDto();
-        roleDto.setRoleId(UUID.fromString(role.getId()));
+        roleDto.setId(UUID.fromString(role.getId()));
         roleDto.setName(role.getName());
         return roleDto;
     }

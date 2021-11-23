@@ -1,6 +1,8 @@
 package com.illia.krasnienkov.movie.dto.model_dtos;
 
-public class CountryDto {
+import com.illia.krasnienkov.movie.dto.CommonDto;
+
+public class CountryDto extends CommonDto {
     private String shortName;
 
     private String fullName;

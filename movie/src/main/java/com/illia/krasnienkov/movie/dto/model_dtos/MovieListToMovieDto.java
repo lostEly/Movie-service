@@ -1,8 +1,10 @@
 package com.illia.krasnienkov.movie.dto.model_dtos;
 
+import com.illia.krasnienkov.movie.dto.CommonDto;
+
 import java.time.LocalDateTime;
 
-public class MovieListToMovieDto {
+public class MovieListToMovieDto extends CommonDto {
     private MovieListDto movieListDto;
     private MovieDto movieDto;
     private LocalDateTime dateAdded;

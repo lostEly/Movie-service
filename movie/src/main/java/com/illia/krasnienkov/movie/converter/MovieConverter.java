@@ -13,7 +13,10 @@ public class MovieConverter implements Converter<Movie, MovieDto> {
     @Override
     public MovieDto convert(Movie movie) {
         MovieDto dto = new MovieDto();
-            dto.setMovieId(UUID.fromString(movie.getId()));
+            dto.setId(UUID.fromString(movie.getId()));
+            dto.setDateCreated(movie.getDateCreated());
+            dto.setDateUpdated(movie.getDateUpdated());
+            dto.setDateDeleted(movie.getDateDeleted());
             dto.setName(movie.getName());
             dto.setDescription(movie.getDescription());
             dto.setDuration(movie.getDuration());

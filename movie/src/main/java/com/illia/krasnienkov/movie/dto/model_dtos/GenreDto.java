@@ -1,6 +1,8 @@
 package com.illia.krasnienkov.movie.dto.model_dtos;
 
-public class GenreDto {
+import com.illia.krasnienkov.movie.dto.CommonDto;
+
+public class GenreDto extends CommonDto {
     private String name;
 
     public String getName() {

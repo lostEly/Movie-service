@@ -34,7 +34,7 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     @Autowired
-    public void RoleConverterToDto(RoleConverterToDto roleConverterToDto) {
+    public void setRoleConverterToDto(RoleConverterToDto roleConverterToDto) {
         this.roleConverterToDto = roleConverterToDto;
     }
 

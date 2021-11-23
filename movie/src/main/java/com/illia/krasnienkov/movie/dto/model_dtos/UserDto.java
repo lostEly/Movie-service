@@ -1,12 +1,13 @@
 package com.illia.krasnienkov.movie.dto.model_dtos;
 
+import com.illia.krasnienkov.movie.dto.CommonDto;
+
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-public class UserDto {
+public class UserDto extends CommonDto {
 
-    private UUID id;
     private String name;
     private String lastName;
     private String sex;
@@ -14,14 +15,6 @@ public class UserDto {
     private String telephone;
     private String email;
     private Set<RoleDto> roles = new HashSet<>();
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -86,7 +79,7 @@ public class UserDto {
 
         UserDto userDto = (UserDto) o;
 
-        if (!id.equals(userDto.id)) return false;
+        if (!getId().equals(userDto.getId())) return false;
         if (!name.equals(userDto.name)) return false;
         if (!lastName.equals(userDto.lastName)) return false;
         if (sex != null ? !sex.equals(userDto.sex) : userDto.sex != null) return false;
@@ -98,7 +91,7 @@ public class UserDto {
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
+        int result = getId().hashCode();
         result = 31 * result + name.hashCode();
         result = 31 * result + lastName.hashCode();
         result = 31 * result + (sex != null ? sex.hashCode() : 0);
@@ -111,7 +104,7 @@ public class UserDto {
     @Override
     public String toString() {
         return "UserDto{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", sex=" + sex +

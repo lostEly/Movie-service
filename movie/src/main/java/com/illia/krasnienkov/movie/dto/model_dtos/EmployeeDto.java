@@ -1,6 +1,8 @@
 package com.illia.krasnienkov.movie.dto.model_dtos;
 
-public class EmployeeDto {
+import com.illia.krasnienkov.movie.dto.CommonDto;
+
+public class EmployeeDto extends CommonDto {
 
     private String name;
 

@@ -1,6 +1,7 @@
 package com.illia.krasnienkov.movie.service.impl;
 
 import com.illia.krasnienkov.movie.exceptions.ResourceNotFoundException;
+import com.illia.krasnienkov.movie.model.Audit;
 import com.illia.krasnienkov.movie.service.ModelsService;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public abstract class ModelsServiceImpl<D, M> implements ModelsService<D, M> {
+public abstract class ModelsServiceImpl<D, M extends Audit> implements ModelsService<D, M> {
     protected JpaRepository<M, String> repository;
     protected ConversionService service;
     protected Class<D> dtoType;
@@ -40,10 +41,7 @@ public abstract class ModelsServiceImpl<D, M> implements ModelsService<D, M> {
 
     @Override
     public D readById(String id) {
-        M model = repository.findById(id)
-                .orElseThrow(() -> {
-                    throw new ResourceNotFoundException(dtoType, id);
-                });
+        M model = findById(id);
         return service.convert(model, dtoType);
     }
 

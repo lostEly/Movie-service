@@ -6,7 +6,7 @@ import com.illia.krasnienkov.movie.model.Movie;
 
 public interface MovieService extends ModelsService<MovieDto, Movie> {
 
-    public MovieInformationDto getMovieInformation(String id);
+    MovieInformationDto getMovieInformation(String id);
 
-    public MovieDto getRandomMovie();
+    MovieDto getRandomMovie();
 }

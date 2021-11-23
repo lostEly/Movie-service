@@ -1,19 +1,12 @@
 package com.illia.krasnienkov.movie.dto.model_dtos;
 
+import com.illia.krasnienkov.movie.dto.CommonDto;
+
 import java.util.UUID;
 
-public class RoleDto {
+public class RoleDto extends CommonDto {
 
-    private UUID roleId;
     private String name;
-
-    public UUID getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(UUID roleId) {
-        this.roleId = roleId;
-    }
 
     public String getName() {
         return name;
@@ -30,13 +23,13 @@ public class RoleDto {
 
         RoleDto roleDto = (RoleDto) o;
 
-        if (!roleId.equals(roleDto.roleId)) return false;
+        if (!getId().equals(roleDto.getId())) return false;
         return name.equals(roleDto.name);
     }
 
     @Override
     public int hashCode() {
-        int result = roleId.hashCode();
+        int result = getId().hashCode();
         result = 31 * result + name.hashCode();
         return result;
     }
@@ -44,7 +37,7 @@ public class RoleDto {
     @Override
     public String toString() {
         return "RoleDto{" +
-                "roleId='" + roleId + '\'' +
+                "roleId='" + getId() + '\'' +
                 ", name='" + name + '\'' +
                 '}';
     }

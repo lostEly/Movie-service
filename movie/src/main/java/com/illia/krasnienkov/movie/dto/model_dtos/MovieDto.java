@@ -1,26 +1,19 @@
 package com.illia.krasnienkov.movie.dto.model_dtos;
 
+import com.illia.krasnienkov.movie.dto.CommonDto;
+
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.UUID;
 
-public class MovieDto {
+public class MovieDto extends CommonDto {
 
-    private UUID movieId;
     private String name;
     private String description;
     private Duration duration;
     private LocalDate releaseDate;
     private Double rating;
-
-    public UUID getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(UUID movieId) {
-        this.movieId = movieId;
-    }
 
     public String getName() {
         return name;
@@ -65,7 +58,7 @@ public class MovieDto {
     @Override
     public String toString() {
         return "MovieDto{" +
-                "movieId=" + movieId +
+                "movieId=" + getId() +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", duration=" + duration +
@@ -81,7 +74,7 @@ public class MovieDto {
 
         MovieDto movieDto = (MovieDto) o;
 
-        if (!movieId.equals(movieDto.movieId)) return false;
+        if (!getId().equals(movieDto.getId())) return false;
         if (!name.equals(movieDto.name)) return false;
         if (description != null ? !description.equals(movieDto.description) : movieDto.description != null)
             return false;
@@ -93,7 +86,7 @@ public class MovieDto {
 
     @Override
     public int hashCode() {
-        int result = movieId.hashCode();
+        int result = getId().hashCode();
         result = 31 * result + name.hashCode();
         result = 31 * result + rating.hashCode();
         return result;

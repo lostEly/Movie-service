@@ -1,12 +1,12 @@
 package com.illia.krasnienkov.movie.dto.model_dtos;
 
+import com.illia.krasnienkov.movie.dto.CommonDto;
 import com.illia.krasnienkov.movie.model.MovieList;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class MovieListDto {
-    private UUID id;
+public class MovieListDto extends CommonDto {
 
     private String name;
 
@@ -17,14 +17,6 @@ public class MovieListDto {
     private UserDto userDto;
 
     private MovieList.MovieListType movieListType;
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -73,7 +65,7 @@ public class MovieListDto {
 
         MovieListDto that = (MovieListDto) o;
 
-        if (!id.equals(that.id)) return false;
+        if (!getId().equals(that.getId())) return false;
         if (!name.equals(that.name)) return false;
         if (dateCreated != null ? !dateCreated.equals(that.dateCreated) : that.dateCreated != null) return false;
         return comment != null ? comment.equals(that.comment) : that.comment == null;
@@ -81,7 +73,7 @@ public class MovieListDto {
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
+        int result = getId().hashCode();
         result = 31 * result + name.hashCode();
         result = 31 * result + (dateCreated != null ? dateCreated.hashCode() : 0);
         result = 31 * result + (comment != null ? comment.hashCode() : 0);
@@ -91,7 +83,7 @@ public class MovieListDto {
     @Override
     public String toString() {
         return "MovieListDto{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", name='" + name + '\'' +
                 ", dateCreated=" + dateCreated +
                 ", comment='" + comment + '\'' +
