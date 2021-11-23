@@ -16,11 +16,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CommonServiceImplTest<D extends CommonDto, M extends Audit> extends SpringIntegrationTest {
 
-    ModelsService<D, M> service;
-    M model;
-    D dto;
-    M updatedModel;
-    Map<String, Object> patchFields;
+    private final ModelsService<D, M> service;
+    private M model;
+    private D dto;
+    private M updatedModel;
+    private Map<String, Object> patchFields;
 
     public CommonServiceImplTest(ModelsService<D, M> service) {
         this.service = service;
