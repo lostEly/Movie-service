@@ -5,16 +5,14 @@ import com.illia.krasnienkov.movie.dto.CommonDto;
 import com.illia.krasnienkov.movie.exceptions.ResourceNotFoundException;
 import com.illia.krasnienkov.movie.model.Audit;
 import com.illia.krasnienkov.movie.service.ModelsService;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 
 import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Disabled
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CommonServiceImplTest<D extends CommonDto, M extends Audit> extends SpringIntegrationTest {
 
